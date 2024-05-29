@@ -6,6 +6,38 @@ The following project is a power management PCB designed to charge a lithium-ion
 </p>
 <p align="center"><i>Blender Render</i></p>
 
+## Arduino Low-Power Application 🔋
+Before diving into the PCB design I am going to explore the low-power application that I have designed for this project. The application [Full_Functionality.ino](./Arduino_Code/Full_Functionality/Full_Functionality.ino) utilizes the DHT11 sensor to record temperature and humidity readings, then writes them to the onboard EEPROM (1 KB). Once the data has been stored in the EEPROM the arduino goes into a lower power state by utilizing the [narcoleptic library](https://github.com/brabl2/narcoleptic). I am running this entire application on an [Arduino Uno REV3](https://docs.arduino.cc/hardware/uno-rev3/#tech-specs).
+
+For this application, I would like the Arduino to last as long as possible on battery power. To reduce it's power consumption I referenced the following two articles: [The Arduino Guide to Low Power Design](https://docs.arduino.cc/learn/electronics/low-power/), and [Power saving techniques for microprocessors
+](https://www.gammon.com.au/power). A lot of the common techniques involved disabling unused peripherals, reducing clock speeds, and forcing the CPU into a low power mode. One extremely effective method that <b>I did not</b> attempt was utilizing a "bare bones" Atmega328 board. By stripping away a lot of unnecessary components (i.e. USB controller, LDO, etc...) you can significantly reduce the power consumption.
+
+## Arduino Pin-out
+| **Arduino** | **DHT11** |
+| ------------- | ------------- |
+| 5V            | VCC           | 
+| GND           | GND           |   
+| 2/PD2         | DATA          | 
+
+### Power Consumption Tests 🪫
+
+#### Default State
+With the Arduino in its default state and the default sketch, as seen below, the power consumption is roughly <b>x mA</b>.
+
+```C++
+void setup () {}
+void loop () {}
+```
+
+#### Full_Functionality.ino
+In the Full_Functionality.ino script the following things are done to save power:
+* Disable ADC
+* Disable SPI
+* Disable UART
+* Disable Wire
+* Disable Timers
+
+
 ## NFC Principle 🧲
 <b>[NFC (Near Field Communication)](https://www.spiceworks.com/tech/networking/articles/what-is-near-field-communication/)</b> is a group of communication protocols that allows for low speed wireless communication between two electronic devices. 
 * NFC communication occurs when both electronic devices are within a distance of 4cm or less. 
