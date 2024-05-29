@@ -1,5 +1,5 @@
-# PCB Business Card 💳
-The following project is a PCB designed as a business card. This card contains an integrated NFC tag that allows you to share your contact information wirelessly.
+# Solar Power Management PCB ☀️
+The following project is a power management PCB designed to charge a lithium-ion battery using a solar panel and discharge it into an Arduino for low-power applications.
 
 <p align="center">
     <img title="PCB Business Card Render" alt="PCB Business Card" src="./Blender_Render/PCB_Business_Card_Blender.png" width ="75%">
