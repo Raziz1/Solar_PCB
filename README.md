@@ -7,17 +7,25 @@ The following project is a power management PCB designed to charge a lithium-ion
 <p align="center"><i>Blender Render</i></p>
 
 ## Arduino Low-Power Application 🔋
-Before diving into the PCB design I am going to explore the low-power application that I have designed for this project. The application [Full_Functionality.ino](./Arduino_Code/Full_Functionality/Full_Functionality.ino) utilizes the DHT11 sensor to record temperature and humidity readings, then writes them to the onboard EEPROM (1 KB). Once the data has been stored in the EEPROM the arduino goes into a lower power state by utilizing the [narcoleptic library](https://github.com/brabl2/narcoleptic). I am running this entire application on an [Arduino Uno REV3](https://docs.arduino.cc/hardware/uno-rev3/#tech-specs).
+Before diving into the PCB design I am going to explore the low-power application that I have designed for this project. The application [Full_Functionality.ino](./Arduino_Code/Full_Functionality/Full_Functionality.ino) utilizes the [DHT11 sensor](https://www.arduino.cc/reference/en/libraries/dht11/) to record temperature and humidity readings, then writes them to the onboard EEPROM (1 KB). Once the data has been stored in the EEPROM the arduino goes into a lower power state by utilizing the [narcoleptic library](https://github.com/brabl2/narcoleptic). I am running this entire application on an [Arduino Uno REV3](https://docs.arduino.cc/hardware/uno-rev3/#tech-specs).
 
 For this application, I would like the Arduino to last as long as possible on battery power. To reduce it's power consumption I referenced the following two articles: [The Arduino Guide to Low Power Design](https://docs.arduino.cc/learn/electronics/low-power/), [Arduino minimal power usage](https://arduino.stackexchange.com/questions/21616/arduino-minimal-power-usage), and [Power saving techniques for microprocessors
 ](https://www.gammon.com.au/power). A lot of the common techniques involved disabling unused peripherals, reducing clock speeds, and forcing the CPU into a low power mode. One extremely effective method that <b>I did not</b> attempt was utilizing a "bare bones" Atmega328 board. By stripping away a lot of unnecessary components (i.e. USB controller, LDO, etc...) you can significantly reduce the power consumption.
 
 ## Arduino Pin-out
+
 | **Arduino** | **DHT11** |
 | ------------- | ------------- |
 | 5V            | VCC           | 
 | GND           | GND           |   
 | 2/PD2         | DATA          | 
+
+<br>
+
+<p align="center">
+    <img title="Arduino Pin-out" alt="Arduino Pin-out" src="./Images/DHT11-Schematic.png" width ="75%">
+</p>
+<p align="center"><i>Arduino Pin-out</i></p>
 
 ## Power Consumption Tests 🪫
 To test the power consumption of the Arduino, I used a bench power supply, a 100-ohm shunt resistor, and the Analog Discovery 2 USB oscilloscope.
@@ -86,7 +94,23 @@ Despite the power savings documented above, there are still quite a few methods 
 Now that we know the power consumption of the Arduino, we can begin picking components for this project. This section will focus on the choice of solar panel and lithium-ion battery.
 
 ### Lithium Ion Battery 🔋
-For the battery, I ended up selecting a pair of lithium-ion batteries I already had at home. The batteries were two 3.7V 2600mAh lithium-ion batteries from PKCELL.
+For the battery, I ended up selecting a pair of lithium-ion batteries I already had at home. The batteries were two 3.7V 2600mAh lithium-ion batteries from PKCELL. [Li-ion Battery ICR18650 2600mAh 3.7V Datasheet](https://www.parts-express.com/pedocs/specs/142-202--pkcell-flat-top-18650-li-ion-3.7v-2600mah-rechargeable-battery-spec-sheet.pdf). Some important specifications to note about this battery are the following:
+* Nominal Voltage - 3.7V
+* Charging Cut-off Voltage - 4.2V
+* Discharge Cut-off Voltage - 3.0V
+* Standard Charge - Constant Current 0.5C Constant Voltage 4.2V 0.01 C cut-off
+* Standard Discharge - Discharge at 0.2 C to 3.0V
+
+
+<p align="center">
+    <img title="Lithium Ion Batteries" alt="Lithium Ion Batteries" src="./Images/PKCELL-18650-3.7V-2600mAh-Rechargeable-Lithium-Battery-11.png" width ="50%">
+</p>
+<p align="center"><i>PKCELL Lithium Ion Batteries</i></p>
+
+#### Arduino Low-Power Application Discharge Rate
+https://oregonembedded.com/batterycalc.htm
+
+
 
 ## NFC Principle 🧲
 <b>[NFC (Near Field Communication)](https://www.spiceworks.com/tech/networking/articles/what-is-near-field-communication/)</b> is a group of communication protocols that allows for low speed wireless communication between two electronic devices. 
