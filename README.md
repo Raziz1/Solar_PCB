@@ -19,10 +19,10 @@ For this application, I would like the Arduino to last as long as possible on ba
 | GND           | GND           |   
 | 2/PD2         | DATA          | 
 
-### Power Consumption Tests 🪫
+## Power Consumption Tests 🪫
 To test the power consumption of the Arduino, I used a bench power supply, a 100-ohm shunt resistor, and the Analog Discovery 2 USB oscilloscope.
 
-#### Default Sketch
+### Default Sketch
 For the first test I had the Arduino running the default sketch as seen below.
 ```C++
 void setup () {}
@@ -31,13 +31,13 @@ void loop () {}
 The current consumption was measured at two supply voltage levels: 12V and 8V. Realistically, for our application, we will be running the Arduino off 8V through the barrel connector.
 * 12V - 44.17mA
 * 8V - 25.07mA
-<p float="left">
-    <img title="Arduino Current Draw 12V" alt="Arduino Current Draw 12V" src="./Images/Arduino_Current_Draw_12V.png" width ="45%">
-    <img title="Arduino Current Draw 8V" alt="Arduino Current Draw 8V" src="./Images/Arduino_Current_Draw_8V.png" width ="45%">
+<p align="center">
+    <img title="Arduino Current Draw 12V" alt="Arduino Current Draw 12V" src="./Images/Arduino_Current_Draw_12V.png" width ="49%">
+    <img title="Arduino Current Draw 8V" alt="Arduino Current Draw 8V" src="./Images/Arduino_Current_Draw_8V.png" width ="49%">
 </p>
 <p align="center"><i>Current Draw 12V [LEFT] vs 8V [RIGHT]</i></p>
 
-#### Low_Power_Sketch.ino
+### Low_Power_Sketch.ino
 The Low_Power_Sketch.ino utilizes the sleep, wdt, and power library to lower the Arduino's power consumption. To lower the Arduino's power consumption I did the following:
 
 * Desoldered the 5V 'ON' LED
@@ -46,7 +46,7 @@ The Low_Power_Sketch.ino utilizes the sleep, wdt, and power library to lower the
 * Changing the clock pre-scalar had no effect on the power consumption so I left it as 1.
 * Disabled all peripheral modules (SERIAL, ADC, SPI, USART, TIMER 0, TIMER 1, TIMER 2, I2C)
 * Disabled brown-out feature. Brownout detection is a hardware feature that shuts down the processor if the system voltage is below a threshold
-* The CPU is put into [SLEEP_MODE_PWR_DOWN](https://onlinedocs.microchip.com/pr/GUID-A834D554-5741-41A3-B5E1-35ED7CD8250A-en-US-5/index.html?GUID-825A28EE-C4E4-4C03-864F-92AA9BA41231). The Microchip web page explains what occurs during this mode.
+* Put the CPU into [SLEEP_MODE_PWR_DOWN](https://onlinedocs.microchip.com/pr/GUID-A834D554-5741-41A3-B5E1-35ED7CD8250A-en-US-5/index.html?GUID-825A28EE-C4E4-4C03-864F-92AA9BA41231). The Microchip web page explains what occurs during this mode.
 
 The resulting current consumptions was:
 * 8V - 18.78mA
@@ -56,7 +56,7 @@ The resulting current consumptions was:
 </p>
 <p align="center"><i>Current Draw Low_Power_Sketch.ino</i></p>
 
-#### Narcoleptic_Sketch.ino
+### Narcoleptic_Sketch.ino
 The Narcoleptic_Sketch.ino uses many of the same techniques as the above sketch; however, this script utilizes the [Narcoleptic library](https://github.com/brabl2/narcoleptic) to achieve its low power consumption. The following techniques were used:
 
 * Desoldered the 5V 'ON' LED
@@ -65,7 +65,7 @@ The Narcoleptic_Sketch.ino uses many of the same techniques as the above sketch;
 * Changing the clock pre-scalar had no effect on the power consumption so I left it as 1.
 * Disabled all peripheral modules (SERIAL, ADC, SPI, USART, TIMER 0, TIMER 1, TIMER 2, I2C)
 * Disabled brown-out feature. Brownout detection is a hardware feature that shuts down the processor if the system voltage is below a threshold
-* Narcoleptic.Delay(x_milliseconds) is called to force the CPU in a low power state for x_milliseconds.
+* Narcoleptic.Delay(x_milliseconds) is called to force the CPU in a low-power state for x_milliseconds.
 
 The resulting current consumptions was:
 * 8V - 18.27mA
@@ -78,9 +78,15 @@ The resulting current consumptions was:
 ### Future Power Consumption Improvements
 Despite the power savings documented above, there are still quite a few methods that were left out during this process, which can yield large power savings.
 
-* The first method is to bypass or remove any inefficient voltage regulators/LDO's. The Arduino UNO REV 3 contains a 3.3V and 5V LDO. The 5V LDO has a very high quiescent current of 10mA. If you by pass this with a more efficient supply method than you can reduce the power consumption. 
-* You can actually run the processor at a lower voltage and lower frequency which can reduce the boards power consumption. 
-* By stripping the Arduino of its optional parts, such as the USB serial converter, 5V LDO, ON LED, and various other components, you can create a more bare-bones Arduino board that draws far less power.  
+* The first method is extensively discussed in the [Power saving techniques for microprocessors](https://www.gammon.com.au/power) article. You can strip various unnecessary parts from the Arduino, leaving you with a bare-bones version of the board. This includes the voltage regulators (for +5V and +3.3V), USB interface chip (for the USB port), and the "power" LED. According to the article, this resulted in a current consumption of 360uA!
+    * The Arduino Uno Rev 3 uses the NCP1117ST50T3G as it's 5V linear voltage regulator. This regulator has a quiescent current of 10mA! If you bypass the LDO you can avoid wasting power.
+* Secondly, the ATmega328P MCU can be run at lower frequencies and hence a lower voltage which can reduce the boards power consumption
+
+## Power Management Components ⚡
+Now that we know the power consumption of the Arduino, we can begin picking components for this project. This section will focus on the choice of solar panel and lithium-ion battery.
+
+### Lithium Ion Battery 🔋
+For the battery, I ended up selecting a pair of lithium-ion batteries I already had at home. The batteries were two 3.7V 2600mAh lithium-ion batteries from PKCELL.
 
 ## NFC Principle 🧲
 <b>[NFC (Near Field Communication)](https://www.spiceworks.com/tech/networking/articles/what-is-near-field-communication/)</b> is a group of communication protocols that allows for low speed wireless communication between two electronic devices. 
