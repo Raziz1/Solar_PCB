@@ -120,23 +120,51 @@ For the battery, I ended up selecting a pair of lithium-ion batteries I already 
 <p align="center"><i>PKCELL Lithium Ion Batteries</i></p>
 
 #### Arduino Low-Power Application Discharge Rate
-https://oregonembedded.com/batterycalc.htm
+Now that we know the battery capacity and the Arduino's current consumption, we can determine the lifespan of the battery while supplying the Arduino.
 
+| **Variable**  | **Description**           | **Value** |
+| ------------- | -------------             | --------- |
+| C             | Battery Capacity          | 5200 mAh  | 
+| Is            | Current while sleeping    | 18.3mA    |
+| Ia            | Current while awake       | 22.4mA    |
+| Wph           | # of wakeups per hour     | 1         |
+| Wt            | Duration of a single wake | 1s        |
 
+Time awake per hour: ${Twph\:=\:Wph\cdot Wt\:=\:1s}$
 
-## NFC Principle 🧲
-<b>[NFC (Near Field Communication)](https://www.spiceworks.com/tech/networking/articles/what-is-near-field-communication/)</b> is a group of communication protocols that allows for low speed wireless communication between two electronic devices. 
-* NFC communication occurs when both electronic devices are within a distance of 4cm or less. 
-* NFC operates at 13.56 MHz on ISO/IEC 18000-3 air interface and at rates ranging from 106 kbit/s to 424 kbit/s.
-* The transfer of data in NFC is bi-directional.
-* NFC has a setup time of 0.1s. For reference, Bluetooth requires a setup time of 6s.
-* NFC utilizes the phenomenon of inductive coupling between two electromagnetic coils.
+Time asleep per hour: ${Tsph\:=\:msph-Wtph\:=\:3599s}$
 
-<p align="center">
-    <img title="NFC Principle" alt="NFC Principle" src="./Images/nfc-reader-tag-block-diagram.jpg" width ="75%">
-</p>
+Average current draw: ${Iavg\:=\:\left(\left(Ia\cdot Twph\right)+\left(Is\cdot Tsph\right)\right)\:/\:3600s\:=\:18.3011mA}$
 
-## NFC IC 📶
+Life of battery: ${\frac{C}{I_{avg}}=\frac{5200mAh}{18.3011mA}=284.136\:h=11.83\:days}$
+
+Alternatively, you could use this [Battery Life Calculator](https://oregonembedded.com/batterycalc.htm), which includes the self-discharge rate of a battery in its calculations. Based on this calculator, the battery's life ends up being 10.06 days.
+
+### Solar Panel 🔆
+To increase the lifespan of the battery, you could further decrease the current consumption of the Arduino using the previously mentioned methods, or you could hook up a solar panel to recharge the batteries.
+
+After a bit of searching I was able to find a 12V 4.2W (350mA Max) portable [solar panel module](https://www.amazon.ca/Portable-Polysilicon-Battery-Charger-Efficiency/dp/B07S1P67HL/ref=sr_1_97_sspa?crid=2WAO18NW0X2GN&dib=eyJ2IjoiMSJ9.fZVIoLELaw3YZhhkogK5VGuvzYc6wwH_Px50gEwUL5AK6Nxr_yeX3NtH-g3Q1hlIK30yAnZ0evMQHhDVoLYAm4sbS6SBN7zU1qKFeF3U7BU.zWxxjvWhspQamoYMqpsdiUn7VfXNYG4ixH8fwb_Tuoc&dib_tag=se&keywords=solar+cell&qid=1717475335&s=hi&sprefix=solar+ceil%2Ctools%2C96&sr=1-97-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGZfbmV4dA&psc=1).
+
+#### Ideal Conditions
+If we assume ideal conditions where the sun is visible 100% of the day we can determine how long it would take for the solar panel to recharge the battery. 
+* ${t}$ is the time (in hours) it takes to charge the battery
+* ${Q}$ is the capacity of the battery (in mAh), which is 5200mAh in our case
+* ${I}$ is the current (in mA) that the panel can supply, which in our case is 350mA max.
+
+${t=\frac{Q}{I}=\frac{5200}{350}=14.85\:hours}$
+
+#### Real World Conditions
+For real-world conditions, we can assume that the total hourly power is closer to 50% of the solar panel's maximum power (175mA). Additionally, we can include the power consumption of the Arduino, which is around 18.3mA.
+* ${t}$ is the time (in hours) it takes to charge the battery
+* ${Q}$ is the capacity of the battery (in mAh), which is 5200mAh in our case
+* ${Iload}$ is the net current (in mA) that the Arduino is drawing, which is 18.3mA in our case
+* ${Isolar}$ is the net current (in mA) that the solar panel is providing, which is 175mA in our case. 
+
+${I_{net}=I_{solar}-I_{net}=175mA-18.3mA=156.7mA}$
+
+${t=\frac{Q}{I_{net}}=\frac{5200}{156.7}=33.18\:hours}$
+
+## Battery Management IC 📶
 THe NFC IC being used in this project is the [NT3H1101W0FTTJ](https://www.digikey.ca/en/products/detail/nxp-usa-inc/NT3H1101W0FTTJ/5347877).
 * This chip is an NFC chip designed by NXP. It features I2C communication, energy harvesting, and field detection features. 
 * It features 64 bytes of SRAM and 1kB of EEPROM memory. We can use the onboard memory to stored a personal website link for the user device to retrieve when communicating with the IC.
