@@ -23,7 +23,7 @@ For this application, I would like the Arduino to last as long as possible on ba
 <br>
 
 <p align="center">
-    <img title="Arduino Pin-out" alt="Arduino Pin-out" src="./Images/DHT11-Schematic.png" width ="75%">
+    <img title="Arduino Pin-out" alt="Arduino Pin-out" src="./Images/DHT11-Schematic.png" width ="50%">
 </p>
 <p align="center"><i>Arduino Pin-out</i></p>
 
@@ -115,7 +115,7 @@ For the battery, I ended up selecting a pair of lithium-ion batteries I already 
 
 
 <p align="center">
-    <img title="Lithium Ion Batteries" alt="Lithium Ion Batteries" src="./Images/PKCELL-18650-3.7V-2600mAh-Rechargeable-Lithium-Battery-11.png" width ="50%">
+    <img title="Lithium Ion Batteries" alt="Lithium Ion Batteries" src="./Images/PKCELL-18650-3.7V-2600mAh-Rechargeable-Lithium-Battery-11.png" width ="25%">
 </p>
 <p align="center"><i>PKCELL Lithium Ion Batteries</i></p>
 
@@ -130,13 +130,13 @@ Now that we know the battery capacity and the Arduino's current consumption, we 
 | Wph           | # of wakeups per hour     | 1         |
 | Wt            | Duration of a single wake | 1s        |
 
-Time awake per hour: ${Twph\:=\:Wph\cdot Wt\:=\:1s}$
+Time awake per hour: ${Twph=Wph\cdot Wt=1s}$
 
-Time asleep per hour: ${Tsph\:=\:msph-Wtph\:=\:3599s}$
+Time asleep per hour: ${Tsph=msph-Wtph=3599s}$
 
-Average current draw: ${Iavg\:=\:\left(\left(Ia\cdot Twph\right)+\left(Is\cdot Tsph\right)\right)\:/\:3600s\:=\:18.3011mA}$
+Average current draw: ${Iavg=\left(\left(Ia\cdot Twph\right)+\left(Is\cdot Tsph\right)\right)/3600s=18.3011\thinspace mA}$
 
-Life of battery: ${\frac{C}{I_{avg}}=\frac{5200mAh}{18.3011mA}=284.136\:h=11.83\:days}$
+Life of battery: ${\frac{C}{I_{avg}}=\frac{5200mAh}{18.3011mA}=284.136\thinspace h=11.83\thinspace days}$
 
 Alternatively, you could use this [Battery Life Calculator](https://oregonembedded.com/batterycalc.htm), which includes the self-discharge rate of a battery in its calculations. Based on this calculator, the battery's life ends up being 10.06 days.
 
@@ -151,7 +151,7 @@ If we assume ideal conditions where the sun is visible 100% of the day we can de
 * ${Q}$ is the capacity of the battery (in mAh), which is 5200mAh in our case
 * ${I}$ is the current (in mA) that the panel can supply, which in our case is 350mA max.
 
-${t=\frac{Q}{I}=\frac{5200}{350}=14.85\:hours}$
+${t=\frac{Q}{I}=\frac{5200}{350}=14.85\thinspace hours}$
 
 #### Real World Conditions
 For real-world conditions, we can assume that the total hourly power is closer to 50% of the solar panel's maximum power (175mA). Additionally, we can include the power consumption of the Arduino, which is around 18.3mA.
@@ -160,19 +160,24 @@ For real-world conditions, we can assume that the total hourly power is closer t
 * ${Iload}$ is the net current (in mA) that the Arduino is drawing, which is 18.3mA in our case
 * ${Isolar}$ is the net current (in mA) that the solar panel is providing, which is 175mA in our case. 
 
-${I_{net}=I_{solar}-I_{net}=175mA-18.3mA=156.7mA}$
+${I_{net}=I_{solar}-I_{net}=175\thinspace mA-18.3\thinspace mA=156.7\thinspace mA}$
 
-${t=\frac{Q}{I_{net}}=\frac{5200}{156.7}=33.18\:hours}$
+${t=\frac{Q}{I_{net}}=\frac{5200}{156.7}=33.18\thinspace hours}$
 
-## Battery Management IC 📶
-THe NFC IC being used in this project is the [NT3H1101W0FTTJ](https://www.digikey.ca/en/products/detail/nxp-usa-inc/NT3H1101W0FTTJ/5347877).
-* This chip is an NFC chip designed by NXP. It features I2C communication, energy harvesting, and field detection features. 
-* It features 64 bytes of SRAM and 1kB of EEPROM memory. We can use the onboard memory to stored a personal website link for the user device to retrieve when communicating with the IC.
-* Lastly with this chip, we can utilize the induced current to power the chip (i.e., energy harvesting).
-* We can program the IC through the [NFC TagWriter by NXP](https://play.google.com/store/apps/details?id=com.nxp.nfc.tagwriter&hl=en_GB) app.
+## Battery Management IC 🔌
+The battery management IC being used in this project is the [LT3652](https://www.analog.com/en/products/lt3652.html)
+
+* The LT3652 is a complete monolithic step-down battery charger designed for solar power and capable of supporting multi-chemistry, multi-cell batteries.
+* Input Supply Voltage Regulation Loop for MPPT Solar Applications
+* Wide Input Voltage Range: 4.95V to 32V (40V Abs Max)
+* Programmable Charge Rate: Up to 2A
+* User-Selectable Termination: C/10 or On-Board Termination Timer
+* Resistor Programmable Float Voltage: Up to 14.4V
+* Accommodates Li-Ion/Polymer, LiFePO4, SLA Chemistries
+* The primary reason for choosing this IC was because a simulation model for it is available in LTspice.
 
 <p align="center">
-    <img title="NFC IC " alt="NFC IC" src="./Images/NFC_IC_Image.png" width ="40%">
+    <img title="Battery Management IC " alt="Battery Management IC" src="./Images/LT3652_IC.png" width ="25%">
 </p>
 
 ## NFC Equivalent Circuit
