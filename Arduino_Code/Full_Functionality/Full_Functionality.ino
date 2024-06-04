@@ -12,6 +12,7 @@
 #include <DHT11.h>
 #include <avr/sleep.h>
 #include <avr/wdt.h>
+#include <avr/power.h>
 #include <Narcoleptic.h>
 
 // ===============================
@@ -44,6 +45,13 @@ void setup() {
   // Low power mode setup
   pinMode(LED,OUTPUT);
   digitalWrite(LED,LOW);
+
+  // slow clock to divide by 256
+  clock_prescale_set (clock_div_1);
+
+  // turn off brown-out enable in software
+  MCUCR = bit (BODS) | bit (BODSE);
+  MCUCR = bit (BODS); 
 
   disableAllPeriph();
   // Another tweaks to lower the power consumption

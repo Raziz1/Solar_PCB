@@ -83,6 +83,18 @@ The resulting current consumptions was:
 </p>
 <p align="center"><i>Current Draw Narcoleptic_Sketch.ino</i></p>
 
+### Full_Functionality.ino
+The Full_Functionality.ino sketch is the main program that performs the tasks described in the introduction while using the low power modes that were used in Narcoleptic_Sketch.ino. 
+
+The resulting current consumptions was:
+* Awake mode (8V) - 22.42mA
+* Low power mode (8V) - 18.30mA
+
+<p align="center">
+    <img title="Arduino Full_Functionality Sketch" alt="Arduino Full_Functionality Sketch" src="./Images/Arduino_Full_Functionality_Sketch.png" width ="100%">
+</p>
+<p align="center"><i>Full_Functionality.ino Low power mode [LEFT] vs Awake mode [RIGHT]</i></p>
+
 ### Future Power Consumption Improvements
 Despite the power savings documented above, there are still quite a few methods that were left out during this process, which can yield large power savings.
 
