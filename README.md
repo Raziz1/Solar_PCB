@@ -180,6 +180,17 @@ The battery management IC being used in this project is the [LT3652](https://www
     <img title="Battery Management IC " alt="Battery Management IC" src="./Images/LT3652_IC.png" width ="25%">
 </p>
 
+### Charge Current Programming
+The data sheet describes the charge current programming as follows: <i>"The LT3652 charger is configurable to charge at average currents as high as 2A. Maximum charge current is set by choosing an inductor sense resistor (RSENSE)..."</i> 
+
+${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}}$
+
+The maximum charging current is limited by the maximum current output of the solar panel, which is 350 mA. Therefore, we can set the limit to 500 mA to allow for some headroom.
+
+${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}=0.1/0.5=0.2Ω}$
+
+## Simulation
+
 ## NFC Equivalent Circuit
 The internet has a plethora of resources for antenna design. The two sources I will be referring to for this design are:
 * [AN11276 - NXP Community](https://community.nxp.com/pwmxy87654/attachments/pwmxy87654/nfc/6155/1/AN11276.pdf)
