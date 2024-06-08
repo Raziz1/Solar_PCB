@@ -1,6 +1,6 @@
 LTspice 24.0.11 for Windows
 Circuit: * C:\Users\rahim\Downloads\KiCad Projects\Solar_PCB\Simulations\LT3652_Simulation.asc
-Start Time: Tue Jun  4 23:09:06 2024
+Start Time: Wed Jun  5 09:40:54 2024
 solver = Normal
 Maximum thread count: 8
 tnom = 27
@@ -8,5 +8,5 @@ temp = 27
 method = modified trap
 Direct Newton iteration for .op point succeeded.
 Heightened Def Con from 7.71623e-06 to 7.71661e-06
-Total elapsed time: 6.157 seconds.
+Total elapsed time: 49.294 seconds.
 

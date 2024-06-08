@@ -180,6 +180,8 @@ The battery management IC being used in this project is the [LT3652](https://www
     <img title="Battery Management IC " alt="Battery Management IC" src="./Images/LT3652_IC.png" width ="25%">
 </p>
 
+## Design Notes
+
 ### Charge Current Programming
 The data sheet describes the charge current programming as follows: <i>"The LT3652 charger is configurable to charge at average currents as high as 2A. Maximum charge current is set by choosing an inductor sense resistor (RSENSE)..."</i> 
 
@@ -189,7 +191,61 @@ The maximum charging current is limited by the maximum current output of the sol
 
 ${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}=0.1/0.5=0.2Ω}$
 
+### VIN Input Supply
+* A high-quality, low ESR decoupling capacitor is recommended to minimize voltage glitches on VIN
+
+#### RMS Ripple Current
+${I_{CVIN\left(RMS\right)}≅\:I_{CHG\left(MAX\right)}•\:\left(V_{BAT}\:/\:V_{IN}\right)•\left(\left[V_{IN}\:/\:V_{BAT}\right]\:-\:1\right)}$
+
+${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.24309\:A}$
+
+* where ${I_{CHG\left(MAX\right)}}$ is the maximum average charge current
+(100mV/${R_{SENSE}}$).
+* The simple worst-case of ½ • ${I_{CHG\left(MAX\right)}}$ is commonly
+used for design.
+
+#### Input Ripple Voltage
+Bulk capacitance is a function of desired input ripple voltage (ΔVIN), and follows the relation:
+* ${CIN_{\left(BULK\right)}\:=\:ICHG_{\left(MAX\right)}\:•\:\left(V_{BAT}/V_{IN}\right)/∆V_{IN}\:\left(µF\right)}$
+* Input ripple voltages above 0.1V are not recommended. 10µF is typically adequate for most charger applications.
+
+### BOOST Supply
+The voltage on the decoupling capacitor is refreshed through a diode, with the anode connected to either the battery output voltage or an external source, and the cathode connected to the BOOST pin. Rate the diode average current greater than 0.1A, and reverse voltage greater than VIN(MAX).
+
+### VIN/BOOST Start-Up Requirement
+When an LT3652 charger is not switching, the SW pin is
+at the same potential as the battery, which can be as high
+as VBAT(FLT). As such, for reliable start-up, the VIN supply
+must be at least 3.3V above VBAT(FLT). Once switching
+begins and the BOOST supply capacitor gets charged
+such that (VBOOST – VSW) > 2V, the VIN requirement no
+longer applies.
+
+### VBAT Output Decoupling
+An LT3652 charger output requires bypass capacitance connected from the BAT pin to ground (CBAT). A 10µF ceramic capacitor is required for all applications.
+
+### Inductor Selection
+The primary criterion for inductor value selection in an LT3652 charger is the ripple current created in that inductor.
+* Once the inductance value is determined, an inductor must also have a saturation current equal to or exceeding the maximum peak current in the inductor
+* ${L\:=\:\frac{10\:•R_{SENSE}}{\frac{ΔI_L}{I_{CHG\left(MAX\right)}}}•\:V_{BAT\left(FLT\right)}\:•\:\left(1-\:\frac{V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\:\left(µH\right)}$
+* In the above relation, VIN(MAX) is the maximum operational voltage. Ripple current is typically set within a range of 25% to 35% of ICHG(MAX), so an inductor value can be determined by setting 0.25 < ΔIL/ICHG(MAX) < 0.35
+
+### Rectifier Selection
+
+### Battery Float Voltage Programming
+
+### Input Supply Voltage Regulation
+
+### Battery Voltage Temperature Compensation
+
+### Status Pins
+
+### C/10 Termination
+
 ## Simulation
+
+### Layout Considerations
+
 
 ## NFC Equivalent Circuit
 The internet has a plethora of resources for antenna design. The two sources I will be referring to for this design are:
@@ -433,9 +489,6 @@ By introducing a really large tuning capacitor with a value of 15pF, we can adju
 <p align="center"><i>Spectrum Analyzer of Poorly Tuned Antenna</i></p>
 
 With the poorly tuned antenna, the NFC capabilities continued to work. However, it did require the phone to be slightly closer to the antenna. Additionally, based on the above graph, we can see that the magnitude of the NFC signal (13.56MHz) is significantly weaker than in previous examples.
-
-## NFC Protocol
-By utilizing the Analog Discovery 2 oscilloscope feature, I was able to capture a snippet of an NFC transmission. This was done by probing the antenna during NFC operation. The NFC protocol is extremely complicated, and therefore, it is difficult to decipher what this transmission is. You can click on the following link to learn more about the [NFC transmission protocol](https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_application/application_notes/1ma182/1MA182_5E_NFC_WHITE_PAPER.pdf).
 
 <p align="center">
     <img title="NFC Transmission" alt="NFC Transmission" src="./Images/NFC_Transmission.png" width ="100%">
