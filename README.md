@@ -106,7 +106,7 @@ Despite the power savings documented above, there are still quite a few methods 
 Now that we know the power consumption of the Arduino, we can begin picking components for this project. This section will focus on the choice of solar panel and lithium-ion battery.
 
 ### Lithium Ion Battery 🔋
-For the battery, I ended up selecting a pair of lithium-ion batteries I already had at home. The batteries were two 3.7V 2600mAh lithium-ion batteries from PKCELL. [Li-ion Battery ICR18650 2600mAh 3.7V Datasheet](https://www.parts-express.com/pedocs/specs/142-202--pkcell-flat-top-18650-li-ion-3.7v-2600mah-rechargeable-battery-spec-sheet.pdf). Some important specifications to note about this battery are the following:
+For the battery, I ended up selecting a pair of lithium-ion batteries I already had at home. The batteries were two 3.7V 2600mAh lithium-ion batteries from PKCELL. The batteries were arranged in series in a battery pack to produce an output voltage of 7.4V and a capacity of 2600 mAh. [Li-ion Battery ICR18650 2600mAh 3.7V Datasheet](https://www.parts-express.com/pedocs/specs/142-202--pkcell-flat-top-18650-li-ion-3.7v-2600mah-rechargeable-battery-spec-sheet.pdf). Some important specifications to note about this battery are the following:
 * Nominal Voltage - 3.7V
 * Charging Cut-off Voltage - 4.2V
 * Discharge Cut-off Voltage - 3.0V
@@ -124,7 +124,7 @@ Now that we know the battery capacity and the Arduino's current consumption, we 
 
 | **Variable**  | **Description**           | **Value** |
 | ------------- | -------------             | --------- |
-| C             | Battery Capacity          | 5200 mAh  | 
+| C             | Battery Capacity          | 2600 mAh  | 
 | Is            | Current while sleeping    | 18.3mA    |
 | Ia            | Current while awake       | 22.4mA    |
 | Wph           | # of wakeups per hour     | 1         |
@@ -136,9 +136,9 @@ Time asleep per hour: ${Tsph=msph-Wtph=3599s}$
 
 Average current draw: ${Iavg=\left(\left(Ia\cdot Twph\right)+\left(Is\cdot Tsph\right)\right)/3600s=18.3011\thinspace mA}$
 
-Life of battery: ${\frac{C}{I_{avg}}=\frac{5200mAh}{18.3011mA}=284.136\thinspace h=11.83\thinspace days}$
+Life of battery: ${\frac{C}{I_{avg}}=\frac{2600mAh}{18.3011mA}=142.067\thinspace h=5.919\thinspace days}$
 
-Alternatively, you could use this [Battery Life Calculator](https://oregonembedded.com/batterycalc.htm), which includes the self-discharge rate of a battery in its calculations. Based on this calculator, the battery's life ends up being 10.06 days.
+Alternatively, you could use this [Battery Life Calculator](https://oregonembedded.com/batterycalc.htm), which includes the self-discharge rate of a battery in its calculations. Based on this calculator, the battery's life ends up being 5.03 days.
 
 ### Solar Panel 🔆
 To increase the lifespan of the battery, you could further decrease the current consumption of the Arduino using the previously mentioned methods, or you could hook up a solar panel to recharge the batteries.
