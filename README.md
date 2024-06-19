@@ -181,21 +181,24 @@ The battery management IC being used in this project is the [LT3652](https://www
 </p>
 
 ## Design Notes
-
-### Charge Current Programming
-The data sheet describes the charge current programming as follows: <i>"The LT3652 charger is configurable to charge at average currents as high as 2A. Maximum charge current is set by choosing an inductor sense resistor (RSENSE)..."</i> 
-
-${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}}$
-
-The maximum charging current is limited by the maximum current output of the solar panel, which is 350 mA. Therefore, we can set the limit to 500 mA to allow for some headroom.
-
-${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}=0.1/0.5=0.2Ω}$
+- [ ] VIN Input Supply
+- [x] Charge Current Programming
+- [ ] BOOST Supply
+- [ ] VIN/BOOST Start-Up Requirement
+- [ ] VBAT Output Decoupling
+- [ ] Inductor Selection
+- [ ] Rectifier Selection
+- [ ] Battery Float Voltage Programming
+- [ ] Input Supply Voltage Regulation
+- [ ] Battery Voltage Temperature Compensation
+- [ ] Status Pins
+- [ ] C/10 Termination
 
 ### VIN Input Supply
 * A high-quality, low ESR decoupling capacitor is recommended to minimize voltage glitches on VIN
 
 #### RMS Ripple Current
-${I_{CVIN\left(RMS\right)}≅\:I_{CHG\left(MAX\right)}•\:\left(V_{BAT}\:/\:V_{IN}\right)•\left(\left[V_{IN}\:/\:V_{BAT}\right]\:-\:1\right)}$
+${I_{CVIN\left(RMS\right)}≅\:I_{CHG\left(MAX\right)}•\:\left(V_{BAT}\:/\:V_{IN}\right)•\left(\left[V_{IN}\:/\:V_{BAT}\right]\:-\:1\right)^{\frac{1}{2}}}$
 
 ${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.24309\:A}$
 
@@ -206,8 +209,17 @@ used for design.
 
 #### Input Ripple Voltage
 Bulk capacitance is a function of desired input ripple voltage (ΔVIN), and follows the relation:
-* ${CIN_{\left(BULK\right)}\:=\:ICHG_{\left(MAX\right)}\:•\:\left(V_{BAT}/V_{IN}\right)/∆V_{IN}\:\left(µF\right)}$
+* ${C_{IN{\left(BULK\right)}}\:=\:I_{CHG{\left(MAX\right)}}\:•\:\left(V_{BAT}/V_{IN}\right)/∆V_{IN}\:\left(µF\right)}$
 * Input ripple voltages above 0.1V are not recommended. 10µF is typically adequate for most charger applications.
+
+### Charge Current Programming
+The data sheet describes the charge current programming as follows: <i>"The LT3652 charger is configurable to charge at average currents as high as 2A. Maximum charge current is set by choosing an inductor sense resistor (RSENSE)..."</i> 
+
+${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}}$
+
+The maximum charging current is limited by the maximum current output of the solar panel, which is 350 mA. Therefore, we can set the limit to 500 mA to allow for some headroom.
+
+${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}=0.1/0.5=0.2Ω}$
 
 ### BOOST Supply
 The voltage on the decoupling capacitor is refreshed through a diode, with the anode connected to either the battery output voltage or an external source, and the cathode connected to the BOOST pin. Rate the diode average current greater than 0.1A, and reverse voltage greater than VIN(MAX).
