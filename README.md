@@ -241,6 +241,8 @@ The primary criterion for inductor value selection in an LT3652 charger is the r
 * Once the inductance value is determined, an inductor must also have a saturation current equal to or exceeding the maximum peak current in the inductor
 * ${L\:=\:\frac{10\:•R_{SENSE}}{\frac{ΔI_L}{I_{CHG\left(MAX\right)}}}•\:V_{BAT\left(FLT\right)}\:•\:\left(1-\:\frac{V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\:\left(µH\right)}$
 * In the above relation, VIN(MAX) is the maximum operational voltage. Ripple current is typically set within a range of 25% to 35% of ICHG(MAX), so an inductor value can be determined by setting 0.25 < ΔIL/ICHG(MAX) < 0.35
+* Magnetics vendors typically specify inductors with maximum RMS and saturation current ratings. Select an inductor that has a saturation current rating at or above ${\left(1+\:ΔI_{MAX}/2\right)\:•\:I_{CHG\left(MAX\right)}}$, and an RMS rating above ${I_{CHG\left(MAX\right)}}$.
+* Inductors must also meet a maximum voltsecond product requirement. If this specification is not in the data sheet of an inductor, consult the vendor to make sure the maximum volt-second product is not being exceeded by your design. The minimum required volt-second product is: ${V_{BAT\left(FLT\right)}\:•\left(\:\frac{1\:-\:V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\left(V\:•µS\right)}$
 
 ### Rectifier Selection
 
