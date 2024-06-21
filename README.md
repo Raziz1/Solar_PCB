@@ -198,7 +198,7 @@ The battery management IC being used in this project is the [LT3652](https://www
 * A high-quality, low ESR decoupling capacitor is recommended to minimize voltage glitches on VIN
 
 #### RMS Ripple Current
-${I_{CVIN\left(RMS\right)}≅\:I_{CHG\left(MAX\right)}•\:\left(V_{BAT}\:/\:V_{IN}\right)•\left(\left[V_{IN}\:/\:V_{BAT}\right]\:-\:1\right)^{\frac{1}{2}}}$
+${I_{CVIN\left(RMS\right)}≅\:I_{CHG\left(MAX\right)}\:•\:\left(V_{BAT}\:/\:V_{IN}\right)•\left(\left[V_{IN}\:/\:V_{BAT}\right]\:-\:1\right)^{\frac{1}{2}}}$
 
 ${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.24309\:A}$
 
@@ -245,6 +245,12 @@ The primary criterion for inductor value selection in an LT3652 charger is the r
 * Inductors must also meet a maximum voltsecond product requirement. If this specification is not in the data sheet of an inductor, consult the vendor to make sure the maximum volt-second product is not being exceeded by your design. The minimum required volt-second product is: ${V_{BAT\left(FLT\right)}\:•\left(\:\frac{1\:-\:V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\left(V\:•µS\right)}$
 
 ### Rectifier Selection
+The rectifier diode from SW to GND, in a LT3652 battery charger provides a current path for the inductor current when the main power switch is disabled. The rectifier is selected based upon forward voltage, reverse voltage, and maximum current. A Schottky diode is required, as low forward voltage yields the lowest power loss and highest efficiency. The rectifier diode must be rated to withstand reverse voltages greater than the maximum VIN voltage.
+
+The minimum average diode current rating (${I_{DIODE\left(MAX\right)}}$)
+is calculated with maximum output current (${I_{CHG\left(MAX\right)}}$),
+maximum operational VIN, and output at the precondition
+threshold (${V_{BAT\left(PRE\right)},\:or\:0.7\:•\:V_{BAT\left(FLT\right)}}$): ${I_{DIODE\left(MAX\right)}\:>I_{CHG\left(MAX\right)}\:•\frac{V_{IN\left(MAX\right)}\:-\:V_{BAT\left(PRE\right)}}{V_{IN\left(MAX\right)}}\left(A\right)}$
 
 ### Battery Float Voltage Programming
 
