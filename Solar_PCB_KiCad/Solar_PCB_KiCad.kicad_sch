@@ -4,6 +4,12 @@
 	(generator_version "8.0")
 	(uuid "6af0d19f-b029-4f07-94ac-1aca616d65fb")
 	(paper "A4")
+	(title_block
+		(title "Solar_PCB")
+		(date "2024-06-22")
+		(rev "1")
+		(comment 1 "Author: Rahim Aziz")
+	)
 	(lib_symbols
 		(symbol "Battery_Management:LT3652EMSE"
 			(exclude_from_sim no)
@@ -1364,6 +1370,12 @@
 		(uuid "59c66ead-c4c0-4d32-b852-2d47cf14ab59")
 	)
 	(junction
+		(at 107.95 77.47)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "904173db-64fd-499a-8e64-abfec16aebf3")
+	)
+	(junction
 		(at 139.7 91.44)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1407,7 +1419,7 @@
 	)
 	(wire
 		(pts
-			(xy 107.95 77.47) (xy 120.65 77.47)
+			(xy 100.33 77.47) (xy 107.95 77.47)
 		)
 		(stroke
 			(width 0)
@@ -1487,6 +1499,16 @@
 	)
 	(wire
 		(pts
+			(xy 107.95 87.63) (xy 107.95 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "403a0d99-9731-4130-a251-422dcdd8f0b6")
+	)
+	(wire
+		(pts
 			(xy 179.07 106.68) (xy 181.61 106.68)
 		)
 		(stroke
@@ -1557,7 +1579,7 @@
 	)
 	(wire
 		(pts
-			(xy 107.95 80.01) (xy 107.95 82.55)
+			(xy 100.33 80.01) (xy 100.33 82.55)
 		)
 		(stroke
 			(width 0)
@@ -1594,6 +1616,16 @@
 			(type default)
 		)
 		(uuid "59d1b399-e127-4dd2-b57a-1199ee665df4")
+	)
+	(wire
+		(pts
+			(xy 107.95 77.47) (xy 107.95 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ad0bbd7-6f44-48b9-a06b-9eb625e1c509")
 	)
 	(wire
 		(pts
@@ -1797,6 +1829,16 @@
 	)
 	(wire
 		(pts
+			(xy 107.95 77.47) (xy 120.65 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6ba8e30-94c3-40d3-8485-7e34bcc31df4")
+	)
+	(wire
+		(pts
 			(xy 139.7 101.6) (xy 139.7 100.33)
 		)
 		(stroke
@@ -1962,6 +2004,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 107.95 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1d3f015e-7102-434e-9416-7278bc322d8b")
+		(property "Reference" "#PWR07"
+			(at 107.95 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 107.95 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 107.95 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 107.95 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 107.95 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b231c357-92c4-40e0-9dc6-f6718265b521")
+		)
+		(instances
+			(project "Solar_PCB_KiCad"
+				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:D_Schottky")
 		(at 175.26 80.01 90)
 		(unit 1)
@@ -2049,7 +2157,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "0.2"
 			(at 198.12 85.09 90)
 			(effects
 				(font
@@ -2185,7 +2293,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "330k"
 			(at 185.42 113.03 90)
 			(effects
 				(font
@@ -2237,17 +2345,16 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 102.87 77.47 0)
+		(at 95.25 77.47 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "5810606d-e879-434a-8900-b3601285c88b")
 		(property "Reference" "J1"
-			(at 102.87 71.12 0)
+			(at 95.25 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2255,7 +2362,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x02"
-			(at 102.87 73.66 0)
+			(at 95.25 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2263,7 +2370,7 @@
 			)
 		)
 		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal"
-			(at 102.87 77.47 0)
+			(at 95.25 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2272,7 +2379,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 102.87 77.47 0)
+			(at 95.25 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2281,7 +2388,7 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 102.87 77.47 0)
+			(at 95.25 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2322,7 +2429,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "2k"
 			(at 127 109.22 90)
 			(effects
 				(font
@@ -2391,7 +2498,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "1u"
 			(at 179.07 93.9799 0)
 			(effects
 				(font
@@ -2592,7 +2699,7 @@
 				)
 			)
 		)
-		(property "Value" "LED"
+		(property "Value" "RED LED"
 			(at 137.4775 110.49 0)
 			(effects
 				(font
@@ -2709,8 +2816,78 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 107.95 83.82 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bf3a8f97-a55b-4dee-9e7d-7284d9a82140")
+		(property "Reference" "C3"
+			(at 111.76 82.5499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10u"
+			(at 111.76 85.0899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 108.9152 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 107.95 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 107.95 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "1f837c6c-c545-4e1f-bd27-c482268f0786")
+		)
+		(pin "1"
+			(uuid "7e760ce2-a887-48d9-a478-56584b3226e7")
+		)
+		(instances
+			(project "Solar_PCB_KiCad"
+				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
+					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
-		(at 107.95 82.55 0)
+		(at 100.33 82.55 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2719,7 +2896,7 @@
 		(fields_autoplaced yes)
 		(uuid "c0261011-1013-4539-b695-a00d3109570f")
 		(property "Reference" "#PWR01"
-			(at 107.95 88.9 0)
+			(at 100.33 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2728,7 +2905,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 107.95 87.63 0)
+			(at 100.33 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2736,7 +2913,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 107.95 82.55 0)
+			(at 100.33 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2745,7 +2922,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 107.95 82.55 0)
+			(at 100.33 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2754,7 +2931,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 107.95 82.55 0)
+			(at 100.33 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2793,7 +2970,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "10u"
 			(at 201.93 114.2999 0)
 			(effects
 				(font
@@ -2862,7 +3039,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "410k"
 			(at 187.96 102.87 90)
 			(effects
 				(font
@@ -2930,7 +3107,7 @@
 				)
 			)
 		)
-		(property "Value" "LED"
+		(property "Value" "GREEN LED"
 			(at 137.4775 95.25 0)
 			(effects
 				(font
@@ -3133,7 +3310,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "67.2k"
 			(at 175.26 110.49 90)
 			(effects
 				(font
@@ -3201,7 +3378,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "2k"
 			(at 127 96.52 90)
 			(effects
 				(font

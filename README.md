@@ -183,9 +183,9 @@ The battery management IC being used in this project is the [LT3652](https://www
 ## Design Notes
 - [x] VIN Input Supply
 - [x] Charge Current Programming
-- [ ] BOOST Supply
-- [ ] VIN/BOOST Start-Up Requirement
-- [ ] VBAT Output Decoupling
+- [x] BOOST Supply
+- [x] VIN/BOOST Start-Up Requirement
+- [x] VBAT Output Decoupling
 - [ ] Inductor Selection
 - [ ] Rectifier Selection
 - [ ] Battery Float Voltage Programming
@@ -258,7 +258,7 @@ threshold (${V_{BAT\left(PRE\right)},\thinspace or\thinspace 0.7•V_{BAT\left(F
 
 ${I_{DIODE\left(MAX\right)}>0.5\cdot \frac{12-5.18}{12}}$
 
-${I_{DIODE\left(MAX\right)}>028416\thinspace A}$
+${I_{DIODE\left(MAX\right)}>0.28416\thinspace A}$
 
 ### Battery Float Voltage Programming
 The output battery float voltage (VBAT(FLT)) is programmed by connecting a resistor divider from the BAT pin to VFB. VBAT(FLT) can be programmed up to 14.4V.
@@ -327,96 +327,6 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
 ## Simulation
 
 ### Layout Considerations
-
-
-## NFC Equivalent Circuit
-The internet has a plethora of resources for antenna design. The two sources I will be referring to for this design are:
-* [AN11276 - NXP Community](https://community.nxp.com/pwmxy87654/attachments/pwmxy87654/nfc/6155/1/AN11276.pdf)
-* [AN2972 Application note How to design an antenna for dynamic NFC tags](https://www.st.com/resource/en/application_note/an2972-how-to-design-an-antenna-for-dynamic-nfc-tags-stmicroelectronics.pdf)
-
-The figure below shows the equivalent electrical circuits of the dynamic NFC tag and its antenna.
-
-<p align="center">
-    <img title="NFC Equivalent Circuit" alt="NFC Equivalent Circuit" src="./Images/Equivalent_Circuit.png" width ="75%">
-</p>
-
-The above circuit can be simplified into an equivalent RLC circuit.
-
-<p align="center">
-    <img title="NFC RLC Circuit" alt="NFC RLC Circuit" src="./Images/Simplified_Equivalent_Circuit.png" width ="75%">
-</p>
-
-### Resonance Frequency
-Based on the simplified RLC circuit we can determine the resonant frequency. 
-* Resonance frequency is the frequency (in hertz) in which a signal or power level can be carried, or couple from one device to another with no power or signal loss "ideally".
-* $f_R=\frac{1}{2\cdot \pi \cdot \sqrt{L_{pc}\cdot C_{pl}}}$
-    * $C_{pl}=C_{tun}+C_{ant}$
-
-We know that for an NFC tag, the desired frequency is 13.56 MHz. We also know that the IC's parallel capacitance is 50 pF (from the datasheet). <i>Ignore the parasitic capacitance of the antenna for now; we will come back to that</i>. Based on this information, we can work backwards to determine the required inductance of the antenna.
-
-$f_R=\frac{1}{2\cdot \pi \cdot \sqrt{L_{pc}\cdot C_{pl}}}$
-
-$L_{pc}=\frac{1}{C_{pl}\left(2\pi f_R\right)^2}$
-
-$L_{pc}=\frac{1}{5\cdot 10^{-11}\left(2\pi \cdot 13560000\right)^2} = 0.00000275518$
-
-$L_{pc}=0.00000275518\,H=\:2.75518\:uH$
-
-## Antenna Design 📡
-We can now design an NFC antenna based on the desired inductance calculated above. To design the antenna I referred to various resources to confirm my calculations. 
-
-### NXP Spiral Antenna Calculation
-The [AN11276 NTAG Antenna Design Guide](https://community.nxp.com/pwmxy87654/attachments/pwmxy87654/nfc/6155/1/AN11276.pdf) provides the following information to design an antenna. 
-
-<p align="center">
-    <img title="NXP Spiral Formula" alt="NXP Spiral Formula" src="./Images/NXP_Class_4_Antenna.png" width ="75%">
-</p>
-<p align="center"><i>NXP Class 4 Antenna Design Recommendation</i></p>
-
-<p align="center">
-    <img title="NXP Spiral Formula" alt="NXP Spiral Formula" src="./Images/NXP_Spiral_Antenna_Formula.png" width ="75%">
-</p>
-<p align="center"><i>NXP Round Antennas Formula</i></p>
-
-I utilized the [Antenna_Shape_Calculator](/Resource_Documents/Antenna_Shape_Calculator.xlsx) excel document to calculate the geometric parameters. They were as follows:
-* $D_0 = 41mm$
-* $t = 35um$
-* $w = 300um$
-* $g = 300um$
-* $Nant = 6\:turns$
-* $L_{calc} = 2.754uH$
-
-### STM Spiral Antenna Calculation
-The [AN2972 Application note](https://www.st.com/resource/en/application_note/an2972-how-to-design-an-antenna-for-dynamic-nfc-tags-stmicroelectronics.pdf) provides the following information to design an antenna. 
-
-<p align="center">
-    <img title="STM Spiral Formula" alt="STM Spiral Formula" src="./Images/STM_Antenna.png" width ="75%">
-</p>
-<p align="center"><i>STM Spiral Antenna Design</i></p>
-
-<p align="center">
-    <img title="STM Spiral Formula" alt="STM Spiral Formula" src="./Images/STM_Spiral_Antenna_Formula.png" width ="75%">
-</p>
-<p align="center"><i>STM Spiral Antennas Formula</i></p>
-
-I utilized the [Antenna_Shape_Calculator](/Resource_Documents/Antenna_Shape_Calculator.xlsx) excel document to calculate the geometric parameters. They were as follows:
-* $r_{in} = 17.5mm$
-* $r_{out} = 20.5mm$
-* $Nant = 6\:turns$
-* $L_{calc} = 2.766uH$
-
-### Missing Parameters 
-We are not quite ready to complete the design. Looking back at the equivalent circuit, we are still missing a few parameters: antenna capacitance, antenna resistance, and the NFC IC resistance. Typically, these parameters are determined by measuring the actual physical circuit design. For a guide on how to measure these parameters, check out the following link: --> [Guide to designing antennas for the NTAG I2C plus](https://community.nxp.com/t5/NXP-Designs-Knowledge-Base/Guide-to-designing-antennas-for-the-NTAG-I2C-plus/ta-p/1104729).  Nevertheless, we can make some rough estimations by utilizing various tools.
-
-* Antenna resistance - By using a parasitic resistance tool in KiCad, we can calculate this parameter. According to the tool, the parasitic resistance was 1.17 ohms. 
-* Antenna capacitance - By utilizing the [NXP NFC Antenna Tool](https://community.nxp.com/t5/NFC/bd-p/nfc/page/4?_gl=1*gmz3or*_ga*NzkyMDk1NzYwLjE3MTEwNTg3NTE.*_ga_WM5LE0KMSH*MTcxMTU1MzAwMS4xMy4wLjE3MTE1NTMwMDEuMC4wLjA.) we can roughly estimate this parameter. This tool does not support spiral designs, but we can use the rectangular design to estimate this parameter. According to the tool, the parasitic capacitance was 1.9 pF.
-* NFC IC Resistance - Assuming the voltage should drop entirely across the IC, we can consider this resistance to be infinitely large. For our purposes, we will estimate it to be 100k ohms.
-
-
-<p align="center">
-    <img title="NXP NFC Antenna Tool" alt="NXP NFC Antenna Tool" src="./Images/NXP_Antenna_Tool.png" width ="75%">
-</p>
-<p align="center"><i>NXP NFC Antenna Tool</i></p>
 
 ## Simulation
 We can now work our way backwards to verify the parameters we calculated above. By rebuilding the equivalent circuit with these parameters in LTSpice, we can verify the resonance frequency. According to the simulation below, the resonance frequency is 13.35 MHz. This should be adequate for NFC; alternatively, we can target an inductance of 2.5-2.6 uH to achieve a resonance frequency that is closer to 13.56 MHz. Furthermore, an optional tuning capacitor can be added to get closer to 13.56 MHz.
