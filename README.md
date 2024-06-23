@@ -181,7 +181,7 @@ The battery management IC being used in this project is the [LT3652](https://www
 </p>
 
 ## Design Notes
-- [ ] VIN Input Supply
+- [x] VIN Input Supply
 - [x] Charge Current Programming
 - [ ] BOOST Supply
 - [ ] VIN/BOOST Start-Up Requirement
@@ -198,9 +198,9 @@ The battery management IC being used in this project is the [LT3652](https://www
 * A high-quality, low ESR decoupling capacitor is recommended to minimize voltage glitches on VIN
 
 #### RMS Ripple Current
-${I_{CVIN\left(RMS\right)}≅\,I_{CHG\left(MAX\right)}\,•\,\left(V_{BAT}\,/\,V_{IN}\right)•\left(\left[V_{IN}\,/\,V_{BAT}\right]\,-\,1\right)^{\frac{1}{2}}}$
+${I_{CVIN\left(RMS\right)}≅I_{CHG\left(MAX\right)}•\left(V_{BAT}/V_{IN}\right)•\left(\left[V_{IN}/V_{BAT}\right]-1\right)^{\frac{1}{2}}}$
 
-${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.24309\,A}$
+${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.24309\thinspace A}$
 
 * where ${I_{CHG\left(MAX\right)}}$ is the maximum average charge current
 (100mV/${R_{SENSE}}$).
@@ -209,9 +209,9 @@ used for design.
 
 #### Input Ripple Voltage
 Bulk capacitance is a function of desired input ripple voltage (ΔVIN), and follows the relation:
-${C_{IN{\left(BULK\right)}}\,=\,I_{CHG{\left(MAX\right)}}\,•\,\left(V_{BAT}/V_{IN}\right)/∆V_{IN}\,\left(µF\right)}$
+${C_{IN{\left(BULK\right)}}=I_{CHG{\left(MAX\right)}}•\left(V_{BAT}/V_{IN}\right)/∆V_{IN}\thinspace \left(µF\right)}$
 
-${C_{IN\left(BULK\right)}=0.5\cdot \frac{\left(\frac{7.4}{12}\right)}{0.1}=3.083\,uF}$
+${C_{IN\left(BULK\right)}=0.5\cdot \frac{\left(\frac{7.4}{12}\right)}{0.1}=3.083\thinspace uF}$
 
 * Input ripple voltages above 0.1V are not recommended. 10µF is typically adequate for most charger applications.
 
@@ -242,11 +242,11 @@ An LT3652 charger output requires bypass capacitance connected from the BAT pin 
 ### Inductor Selection
 The primary criterion for inductor value selection in an LT3652 charger is the ripple current created in that inductor.
 * Once the inductance value is determined, an inductor must also have a saturation current equal to or exceeding the maximum peak current in the inductor
-* ${L\,=\,\frac{10\,•R_{SENSE}}{\frac{ΔI_L}{I_{CHG\left(MAX\right)}}}•\,V_{BAT\left(FLT\right)}\,•\,\left(1-\,\frac{V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\,\left(µH\right)}$
-    * ${L=\frac{10\cdot 0.2}{\frac{0.15}{0.5}}\cdot 7.4\cdot \left(1-\frac{7.4}{12}\right)=18.91\,uH}$    
+* ${L=\frac{10•R_{SENSE}}{\frac{ΔI_L}{I_{CHG\left(MAX\right)}}}•V_{BAT\left(FLT\right)}•\left(1-\frac{V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\thinspace \left(µH\right)}$
+    * ${L=\frac{10\cdot 0.2}{\frac{0.15}{0.5}}\cdot 7.4\cdot \left(1-\frac{7.4}{12}\right)=18.91\thinspace uH}$    
 * In the above relation, VIN(MAX) is the maximum operational voltage. Ripple current is typically set within a range of 25% to 35% of ICHG(MAX), so an inductor value can be determined by setting 0.25 < ΔIL/ICHG(MAX) < 0.35
-* Magnetics vendors typically specify inductors with maximum RMS and saturation current ratings. Select an inductor that has a saturation current rating at or above ${\left(1+\,ΔI_{MAX}/2\right)\,•\,I_{CHG\left(MAX\right)}}$, and an RMS rating above ${I_{CHG\left(MAX\right)}}$.
-* Inductors must also meet a maximum voltsecond product requirement. If this specification is not in the data sheet of an inductor, consult the vendor to make sure the maximum volt-second product is not being exceeded by your design. The minimum required volt-second product is: ${V_{BAT\left(FLT\right)}\,•\left(\,\frac{1\,-\,V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\left(V\,•\,µS\right)}$
+* Magnetics vendors typically specify inductors with maximum RMS and saturation current ratings. Select an inductor that has a saturation current rating at or above ${\left(1+ΔI_{MAX}/2\right)•I_{CHG\left(MAX\right)}}$, and an RMS rating above ${I_{CHG\left(MAX\right)}}$.
+* Inductors must also meet a maximum voltsecond product requirement. If this specification is not in the data sheet of an inductor, consult the vendor to make sure the maximum volt-second product is not being exceeded by your design. The minimum required volt-second product is: ${V_{BAT\left(FLT\right)}•\left(\frac{1-V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\left(V•\thinspace µS\right)}$
 
 ### Rectifier Selection
 The rectifier diode from SW to GND, in a LT3652 battery charger provides a current path for the inductor current when the main power switch is disabled. The rectifier is selected based upon forward voltage, reverse voltage, and maximum current. A Schottky diode is required, as low forward voltage yields the lowest power loss and highest efficiency. The rectifier diode must be rated to withstand reverse voltages greater than the maximum VIN voltage.
@@ -254,18 +254,18 @@ The rectifier diode from SW to GND, in a LT3652 battery charger provides a curre
 The minimum average diode current rating (${I_{DIODE\left(MAX\right)}}$)
 is calculated with maximum output current (${I_{CHG\left(MAX\right)}}$),
 maximum operational VIN, and output at the precondition
-threshold (${V_{BAT\left(PRE\right)},\,or\,0.7\,•\,V_{BAT\left(FLT\right)}}$): ${I_{DIODE\left(MAX\right)}\,>I_{CHG\left(MAX\right)}\,•\frac{V_{IN\left(MAX\right)}\,-\,V_{BAT\left(PRE\right)}}{V_{IN\left(MAX\right)}}\left(A\right)}$
+threshold (${V_{BAT\left(PRE\right)},\thinspace or\thinspace 0.7•V_{BAT\left(FLT\right)}}$): ${I_{DIODE\left(MAX\right)}>I_{CHG\left(MAX\right)}•\frac{V_{IN\left(MAX\right)}-V_{BAT\left(PRE\right)}}{V_{IN\left(MAX\right)}}\left(A\right)}$
 
 ${I_{DIODE\left(MAX\right)}>0.5\cdot \frac{12-5.18}{12}}$
 
-${I_{DIODE\left(MAX\right)}>028416\,A}$
+${I_{DIODE\left(MAX\right)}>028416\thinspace A}$
 
 ### Battery Float Voltage Programming
 The output battery float voltage (VBAT(FLT)) is programmed by connecting a resistor divider from the BAT pin to VFB. VBAT(FLT) can be programmed up to 14.4V.
 
 Using a resistor divider with an equivalent input resistance at the VFB pin of 250k compensates for input bias current error. Required resistor values to program desired VBAT(FLT) follow the equations:
-* ${R_{FB1}\,=\,\left(V_{BAT\left(FLT\right)}\,•\,2.5\,•\,10^5\right)/3.3\,\left(Ω\right)}$
-* ${R_{FB2}\,=\,\left(R_{FB1}\,•\,\left(2.5\,•\,10^5\right)\right)/\left(R_{FB1}\,-\,\left(2.5\,•\,10^5\right)\right)\,\left(Ω\right)}$ 
+* ${R_{FB1}=\left(V_{BAT\left(FLT\right)}•2.5•10^5\right)/3.3\thinspace \left(Ω\right)}$
+* ${R_{FB2}=\left(R_{FB1}•\left(2.5•10^5\right)\right)/\left(R_{FB1}-\left(2.5•10^5\right)\right)\thinspace \left(Ω\right)}$ 
 
 
 The charge function operates to achieve the final float voltage of 3.3V on the VFB pin. The auto-restart feature initiates a new charging cycle when the voltage at the VFB pin falls 2.5% below that float voltage. Because the battery voltage is across the VBAT(FLT) programming resistor divider, this divider will draw a small amount of current from the battery (IRFB) at a rate of: IRFB = 3.3/RFB2
