@@ -209,7 +209,10 @@ used for design.
 
 #### Input Ripple Voltage
 Bulk capacitance is a function of desired input ripple voltage (ΔVIN), and follows the relation:
-* ${C_{IN{\left(BULK\right)}}\:=\:I_{CHG{\left(MAX\right)}}\:•\:\left(V_{BAT}/V_{IN}\right)/∆V_{IN}\:\left(µF\right)}$
+${C_{IN{\left(BULK\right)}}\:=\:I_{CHG{\left(MAX\right)}}\:•\:\left(V_{BAT}/V_{IN}\right)/∆V_{IN}\:\left(µF\right)}$
+
+${C_{IN\left(BULK\right)}=0.5\cdot \frac{\left(\frac{7.4}{12}\right)}{0.1}=3.083\:uF}$
+
 * Input ripple voltages above 0.1V are not recommended. 10µF is typically adequate for most charger applications.
 
 ### Charge Current Programming
@@ -240,9 +243,10 @@ An LT3652 charger output requires bypass capacitance connected from the BAT pin 
 The primary criterion for inductor value selection in an LT3652 charger is the ripple current created in that inductor.
 * Once the inductance value is determined, an inductor must also have a saturation current equal to or exceeding the maximum peak current in the inductor
 * ${L\:=\:\frac{10\:•R_{SENSE}}{\frac{ΔI_L}{I_{CHG\left(MAX\right)}}}•\:V_{BAT\left(FLT\right)}\:•\:\left(1-\:\frac{V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\:\left(µH\right)}$
+    * ${L=\frac{10\cdot 0.2}{\frac{0.15}{0.5}}\cdot 7.4\cdot \left(1-\frac{7.4}{12}\right)=18.91\:uH}$    
 * In the above relation, VIN(MAX) is the maximum operational voltage. Ripple current is typically set within a range of 25% to 35% of ICHG(MAX), so an inductor value can be determined by setting 0.25 < ΔIL/ICHG(MAX) < 0.35
 * Magnetics vendors typically specify inductors with maximum RMS and saturation current ratings. Select an inductor that has a saturation current rating at or above ${\left(1+\:ΔI_{MAX}/2\right)\:•\:I_{CHG\left(MAX\right)}}$, and an RMS rating above ${I_{CHG\left(MAX\right)}}$.
-* Inductors must also meet a maximum voltsecond product requirement. If this specification is not in the data sheet of an inductor, consult the vendor to make sure the maximum volt-second product is not being exceeded by your design. The minimum required volt-second product is: ${V_{BAT\left(FLT\right)}\:•\left(\:\frac{1\:-\:V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\left(V\:•µS\right)}$
+* Inductors must also meet a maximum voltsecond product requirement. If this specification is not in the data sheet of an inductor, consult the vendor to make sure the maximum volt-second product is not being exceeded by your design. The minimum required volt-second product is: ${V_{BAT\left(FLT\right)}\:•\left(\:\frac{1\:-\:V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\left(V\:•\:µS\right)}$
 
 ### Rectifier Selection
 The rectifier diode from SW to GND, in a LT3652 battery charger provides a current path for the inductor current when the main power switch is disabled. The rectifier is selected based upon forward voltage, reverse voltage, and maximum current. A Schottky diode is required, as low forward voltage yields the lowest power loss and highest efficiency. The rectifier diode must be rated to withstand reverse voltages greater than the maximum VIN voltage.
@@ -252,15 +256,73 @@ is calculated with maximum output current (${I_{CHG\left(MAX\right)}}$),
 maximum operational VIN, and output at the precondition
 threshold (${V_{BAT\left(PRE\right)},\:or\:0.7\:•\:V_{BAT\left(FLT\right)}}$): ${I_{DIODE\left(MAX\right)}\:>I_{CHG\left(MAX\right)}\:•\frac{V_{IN\left(MAX\right)}\:-\:V_{BAT\left(PRE\right)}}{V_{IN\left(MAX\right)}}\left(A\right)}$
 
+${I_{DIODE\left(MAX\right)}>0.5\cdot \frac{12-5.18}{12}}$
+
+${I_{DIODE\left(MAX\right)}>028416\:A}$
+
 ### Battery Float Voltage Programming
+The output battery float voltage (VBAT(FLT)) is programmed by connecting a resistor divider from the BAT pin to VFB. VBAT(FLT) can be programmed up to 14.4V.
+
+Using a resistor divider with an equivalent input resistance at the VFB pin of 250k compensates for input bias current error. Required resistor values to program desired VBAT(FLT) follow the equations:
+* ${R_{FB1}\:=\:\left(V_{BAT\left(FLT\right)}\:•\:2.5\:•\:10^5\right)/3.3\:\left(Ω\right)}$
+* ${R_{FB2}\:=\:\left(R_{FB1}\:•\:\left(2.5\:•\:10^5\right)\right)/\left(R_{FB1}\:-\:\left(2.5\:•\:10^5\right)\right)\:\left(Ω\right)}$ 
+
+
+The charge function operates to achieve the final float voltage of 3.3V on the VFB pin. The auto-restart feature initiates a new charging cycle when the voltage at the VFB pin falls 2.5% below that float voltage. Because the battery voltage is across the VBAT(FLT) programming resistor divider, this divider will draw a small amount of current from the battery (IRFB) at a rate of: IRFB = 3.3/RFB2
+
+Precision resistors in high values may be hard to obtain, so for some lower VBAT(FLT) applications, it may be desirable to use smaller-value feedback resistors with an additional resistor (RFB3) to achieve the required 250k equivalent resistance. The resulting 3-resistor network, as shown in Figure 5, can ease component selection and/or increase output voltage precision, at the expense of additional current through the feedback divider.
+
+${\frac{R_{FB2}}{R_{FB1}}=\frac{3.3}{\left(V_{BAT\left(FLT\right)}-3.3\right)}}$
+
+${\frac{R_{FB2}}{R_{FB1}}=\frac{3.3}{\left(7.4-3.3\right)}=0.80487}$
+
+Set the divider current (IRFB) = 10uA yields:
+
+${R_{FB2}=\frac{3.3}{10uA}=330k}$
+
+Solving for RFB1:
+
+${R_{FB1}=\frac{330k}{0.80487}=410k}$
+
+The divider equivalent resistance is:
+
+${R_{FB1}||R_{FB2}=182.8k}$
+
+To satisfy the 250k equivalent resistance to the VFB pin: 
+
+${R_{FB3}=250k-182.8k=67.2k}$
+
+Because the VFB pin is a relatively high impedance node, stray capacitances at this pin must be minimized. Special attention should be given to any stray capacitances that
+can couple external signals onto the pin, which can produce undesirable output transients or ripple. Effects of parasitic capacitance can typically be reduced by adding
+a small-value (20pF to 50pF) feed forward capacitor from the BAT pin to the VFB pin
 
 ### Input Supply Voltage Regulation
 
+The LT3652 contains a voltage monitor pin that enables programming a minimum operational voltage. Connecting a resistor divider from VIN to the VIN_REG pin enables programming of minimum input supply voltage, typically used to program the peak power voltage for a solar panel. Maximum charge current is reduced when the VIN_REG pin is below the regulation threshold of 2.7V. If an input supply cannot provide enough power to satisfy
+the requirements of an LT3652 charger, the supply voltage will collapse. A minimum operating supply voltage can thus be programmed by monitoring the supply through a resistor divider, such that the desired minimum voltage corresponds to 2.7V at the VIN_REG pin. The LT3652 servos the maximum output charge current to maintain
+the voltage on VIN_REG at or above 2.7V. Programming of the desired minimum voltage is accomplished by connecting a resistor divider as shown in
+Figure 6. The ratio of RIN1/RIN2 for a desired minimum voltage (VIN(MIN)) is:
+
+${\frac{R_{IN1}}{R_{IN2}}=\left(\frac{V_{IN\left(MIN\right)}}{2.7}\right)-1}$
+
+If the voltage regulation feature is not used, connect the VIN_REG pin to VIN.
+
+### MPPT Temperature Compensation
+
 ### Battery Voltage Temperature Compensation
+
+<i>See Page 16 of the Datasheet</i>
 
 ### Status Pins
 
+The LT3652 reports charger status through two open collector outputs, the CHRG and FAULT pins. These pins can accept voltages as high as VIN, and can sink up to 10mA when enabled. The CHRG pin indicates that the charger is delivering current at greater that a C/10 rate, or 1/10th of the programmed maximum charge current. The FAULT pin signals bad battery and NTC faults.
+
+If the battery is removed from an LT3652 charger that is configured for C/10 termination, a sawtooth waveform of approximately 100mV appears at the charger output, due to cycling between termination and recharge events, This cycling results in pulsing at the CHRG output. An LED connected to this pin will exhibit a blinking pattern, indicating to the user that a battery is not present. The frequency of this blinking pattern is dependent on the output capacitance.
+
 ### C/10 Termination
+
+The LT3652 supports a low-current based termination scheme, where a battery charge cycle terminates when the current output from the charger falls to below one-tenth of the maximum current, as programmed with RSENSE. The C/10 threshold current corresponds to 10mV across RSENSE. This termination mode is engaged by shorting the TIMER pin to ground.
+When C/10 termination is used, a LT3652 charger will source battery charge current as long as the average current level remains above the C/10 threshold. As the full-charge float voltage is achieved, the charge current falls until the C/10 threshold is reached, at which time the charger terminates and the LT3652 enters standby mode. The CHRG status pin follows the charger cycle, and is high impedance when the charger is not actively charging. When VBAT drops below 97.5% of the full-charged float voltage, whether by battery loading or replacement of the battery, the charger automatically re-engages and starts charging. There is no provision for bad battery detection if C/10 termination is used.
 
 ## Simulation
 
