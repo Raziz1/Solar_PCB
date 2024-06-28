@@ -311,7 +311,9 @@ If the voltage regulation feature is not used, connect the VIN_REG pin to VIN.
 
 ### Battery Voltage Temperature Compensation
 
-<i>See Page 16 of the Datasheet</i>
+<i>See Page 16 of the datasheet for MPPT temperature compensation and battery voltage temperature compensation</i>
+
+In this design I opted to ignore the following features to simplify the design. Nevertheless, these features are actually very easy to work with and are well documented within the datasheet.
 
 ### Status Pins
 
@@ -319,58 +321,28 @@ The LT3652 reports charger status through two open collector outputs, the CHRG a
 
 If the battery is removed from an LT3652 charger that is configured for C/10 termination, a sawtooth waveform of approximately 100mV appears at the charger output, due to cycling between termination and recharge events, This cycling results in pulsing at the CHRG output. An LED connected to this pin will exhibit a blinking pattern, indicating to the user that a battery is not present. The frequency of this blinking pattern is dependent on the output capacitance.
 
+<p align="center">
+    <img title="Status Pins Table" alt="Status Pins Table" src="./Images/Status_Pins.png" width ="50%">
+</p>
+<p align="center"><i>Status Pins Table</i></p>
+
 ### C/10 Termination
 
 The LT3652 supports a low-current based termination scheme, where a battery charge cycle terminates when the current output from the charger falls to below one-tenth of the maximum current, as programmed with RSENSE. The C/10 threshold current corresponds to 10mV across RSENSE. This termination mode is engaged by shorting the TIMER pin to ground.
 When C/10 termination is used, a LT3652 charger will source battery charge current as long as the average current level remains above the C/10 threshold. As the full-charge float voltage is achieved, the charge current falls until the C/10 threshold is reached, at which time the charger terminates and the LT3652 enters standby mode. The CHRG status pin follows the charger cycle, and is high impedance when the charger is not actively charging. When VBAT drops below 97.5% of the full-charged float voltage, whether by battery loading or replacement of the battery, the charger automatically re-engages and starts charging. There is no provision for bad battery detection if C/10 termination is used.
 
 ## Simulation
+<p align="center">
+    <img title="LTSpice Schematic Capture" alt="LTSpice Schematic Capture" src="./Simulations/LT3652_Schematic.png" width ="100%">
+</p>
+<p align="center"><i>LTSpice Schematic Capture</i></p>
+
+<p align="center">
+    <img title="LTSpice Schematic Capture" alt="LTSpice Schematic Capture" src="./Simulations/LT3652_Simulation_OUT.png" width ="100%">
+</p>
+<p align="center"><i>LTSpice Charge Simulation 0% --> 100%</i></p>
 
 ### Layout Considerations
-
-## Simulation
-We can now work our way backwards to verify the parameters we calculated above. By rebuilding the equivalent circuit with these parameters in LTSpice, we can verify the resonance frequency. According to the simulation below, the resonance frequency is 13.35 MHz. This should be adequate for NFC; alternatively, we can target an inductance of 2.5-2.6 uH to achieve a resonance frequency that is closer to 13.56 MHz. Furthermore, an optional tuning capacitor can be added to get closer to 13.56 MHz.
-
-<p align="center">
-    <img title="LTSpice Simulation" alt="LTSpice Simulation" src="./Images/LTSpice_Simulation.png" width ="75%">
-</p>
-<p align="center"><i>LTSpice Simulation</i></p>
-
-I decided to rerun the simulation and redesign the antenna parameters ($D_0 = 39mm$) to target an inductance of 2.576uH. This gives us more headroom to account for any imperfections in the manufacturing process. This allows us to use a tuning capacitor to bring the resonance frequency down and closer to 13.56 MHz.  
-
-<p align="center">
-    <img title="LTSpice Simulation Tuned" alt="LTSpice Simulation Tuned" src="./Images/LTSpice_Simulation_Tuned.png" width ="75%">
-</p>
-<p align="center"><i>LTSpice Simulation with Tuning Capacitor</i></p>
-
-### Electromagnetic Simulation 🧲
-Antennas are typically simulated in electromagnetic simulation software. There are various tools available, such as:
-* Ansys HFSS - The student edition does not support circuit simulation nor does it support import/export
-* Solidworks CST Microwave -  The student edition does not support circuit simulation nor does it support import/export 
-* openEMS
-* MATLAB Antenna Toolbox
-
-For this design, I ended up simulating it in MATLAB because I did not have access to the non-student versions of HFSS or CST.
-
-#### MATLAB Antenna Toolbox
-By utilizing [MATLAB's Antenna Toolbox](https://www.mathworks.com/help/antenna/), we can generate a spiral antenna as well as its S-parameters based on the network-matched design.
-
-<p align="center">
-    <img title="MATLAB Antenna Simulation" alt="MATLAB Antenna Simulation" src="./Antenna_Simulations/MATLAB_Antenna_Simulation/MATLAB_Antenna_Spiral_Image.png" width ="75%">
-</p>
-<p align="center"><i>MATLAB Archimedean Spiral</i></p>
-
-<p align="center">
-    <img title="MATLAB Antenna Simulation" alt="MATLAB Antenna Simulation" src="./Antenna_Simulations/MATLAB_Antenna_Simulation/MATLAB_3D_Radiation_Image.png" width ="75%">
-</p>
-<p align="center"><i>MATLAB 3D Radiation Pattern</i></p>
-
-<p align="center">
-    <img title="MATLAB Antenna Simulation" alt="MATLAB Antenna Simulation" src="./Antenna_Simulations/MATLAB_Antenna_Simulation/Matching_Network_Sparameters_Image.png" width ="75%">
-</p>
-<p align="center"><i>MATLAB Matching Network S-parameters</i></p>
-
-S11 represents the return loss of a device, indicating how much of the input power supplied to the device reflects back to the input port. For an NFC antenna design, it is desired for it to have the lowest gain at at 13.56 MHz. 
 
 ## PCB Design
 For the final design of the antenna I ended up settling on the following parameters:
