@@ -148,21 +148,21 @@ After a bit of searching I was able to find a 12V 4.2W (350mA Max) portable [sol
 #### Ideal Conditions
 If we assume ideal conditions where the sun is visible 100% of the day we can determine how long it would take for the solar panel to recharge the battery. 
 * ${t}$ is the time (in hours) it takes to charge the battery
-* ${Q}$ is the capacity of the battery (in mAh), which is 5200mAh in our case
+* ${Q}$ is the capacity of the battery (in mAh), which is 2600mAh in our case
 * ${I}$ is the current (in mA) that the panel can supply, which in our case is 350mA max.
 
-${t=\frac{Q}{I}=\frac{5200}{350}=14.85\thinspace hours}$
+${t=\frac{Q}{I}=\frac{2600}{350}=7.42\thinspace hours}$
 
 #### Real World Conditions
 For real-world conditions, we can assume that the total hourly power is closer to 50% of the solar panel's maximum power (175mA). Additionally, we can include the power consumption of the Arduino, which is around 18.3mA.
 * ${t}$ is the time (in hours) it takes to charge the battery
-* ${Q}$ is the capacity of the battery (in mAh), which is 5200mAh in our case
+* ${Q}$ is the capacity of the battery (in mAh), which is 2600mAh in our case
 * ${Iload}$ is the net current (in mA) that the Arduino is drawing, which is 18.3mA in our case
 * ${Isolar}$ is the net current (in mA) that the solar panel is providing, which is 175mA in our case. 
 
 ${I_{net}=I_{solar}-I_{net}=175\thinspace mA-18.3\thinspace mA=156.7\thinspace mA}$
 
-${t=\frac{Q}{I_{net}}=\frac{5200}{156.7}=33.18\thinspace hours}$
+${t=\frac{Q}{I_{net}}=\frac{2600}{156.7}=16.59\thinspace hours}$
 
 ## Battery Management IC 🔌
 The battery management IC being used in this project is the [LT3652](https://www.analog.com/en/products/lt3652.html)
