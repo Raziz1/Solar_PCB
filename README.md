@@ -136,7 +136,7 @@ Time asleep per hour: ${Tsph=msph-Wtph=3599s}$
 
 Average current draw: ${Iavg=\left(\left(Ia\cdot Twph\right)+\left(Is\cdot Tsph\right)\right)/3600s=18.3011\thinspace mA}$
 
-Life of battery: ${\frac{C}{I_{avg}}=\frac{2600mAh}{18.3011mA}=142.067\thinspace h=5.919\thinspace days}$
+Life of battery: ${\frac{C}{I_{avg}}=\frac{2600mAh}{18.3011mA}=142.067\thinspace hours=5.919\thinspace days}$
 
 Alternatively, you could use this [Battery Life Calculator](https://oregonembedded.com/batterycalc.htm), which includes the self-discharge rate of a battery in its calculations. Based on this calculator, the battery's life ends up being 5.03 days.
 
@@ -162,7 +162,7 @@ For real-world conditions, we can assume that the total hourly power is closer t
 
 ${I_{net}=I_{solar}-I_{net}=175\thinspace mA-18.3\thinspace mA=156.7\thinspace mA}$
 
-${t=\frac{Q}{I_{net}}=\frac{2600}{156.7}=16.59\thinspace hours}$
+${t=\frac{Q}{I_{net}}=\frac{2600}{156.7}=16.6\thinspace hours}$
 
 ## Battery Management IC 🔌
 The battery management IC being used in this project is the [LT3652](https://www.analog.com/en/products/lt3652.html)
@@ -200,7 +200,7 @@ The battery management IC being used in this project is the [LT3652](https://www
 #### RMS Ripple Current
 ${I_{CVIN\left(RMS\right)}≅I_{CHG\left(MAX\right)}•\left(V_{BAT}/V_{IN}\right)•\left(\left[V_{IN}/V_{BAT}\right]-1\right)^{\frac{1}{2}}}$
 
-${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.24309\thinspace A}$
+${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.2431\thinspace A}$
 
 * where ${I_{CHG\left(MAX\right)}}$ is the maximum average charge current
 (100mV/${R_{SENSE}}$).
@@ -258,7 +258,7 @@ threshold (${V_{BAT\left(PRE\right)},\thinspace or\thinspace 0.7•V_{BAT\left(F
 
 ${I_{DIODE\left(MAX\right)}>0.5\cdot \frac{12-5.18}{12}}$
 
-${I_{DIODE\left(MAX\right)}>0.28416\thinspace A}$
+${I_{DIODE\left(MAX\right)}>0.2841\thinspace A}$
 
 ### Battery Float Voltage Programming
 The output battery float voltage (VBAT(FLT)) is programmed by connecting a resistor divider from the BAT pin to VFB. VBAT(FLT) can be programmed up to 14.4V.
@@ -345,21 +345,6 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
 ### Layout Considerations
 
 ## PCB Design
-For the final design of the antenna I ended up settling on the following parameters:
-* $D_0 = 39mm$
-* $t = 35um$
-* $w = 300um$
-* $g = 300um$
-* $Nant = 6\:turns$
-* $L_{calc} = 2.576uH$
-* $R_{ant} = 1.17\:ohms$
-* $C_{ant} = 2pF$
-* $Simulated\:resonance\:frequency:\:13.75 MHz$ 
-    * *Without Tuning Capacitor*
-
-For the schematic, I borrowed the idea of an LED indicator for the energy harvesting circuit from the [PCB Business Card With NFC](https://www.instructables.com/PCB-Business-Card-With-NFC/). The capacitor is to guarantee operation during RF communication. The resistor value was chosen to limit the current going through the LED. The value was determined by using the following equation:
-* $R\:=\:\frac{V_{CC}-V_{LED}}{I_{LED}}=\frac{3.3-2}{0.02} = 65Ω$
-
 <p align="center">
     <img title="KiCad Schematic Design" alt="KiCad Schematic Design" src="./Images/Schematic_Image.png" width ="75%">
 </p>
@@ -370,11 +355,14 @@ For the schematic, I borrowed the idea of an LED indicator for the energy harves
 <p align="center"><i>PCB Design</i></p>
 
 ## Final BOM 📃
-* [NT3H1101W0FTTJ - IC RFID TRANSP 13.56MHZ 8TSSOP](https://www.digikey.ca/en/products/detail/nxp-usa-inc/NT3H1101W0FTTJ/5347877)
-* [150060VS75000 - LED GREEN CLEAR 0603 SMD](https://www.digikey.ca/en/products/detail/w%C3%BCrth-elektronik/150060VS75000/4489906)
-* [C0603C224J4REC7867 - CAP CER 0603 220NF 16V X7R 5%](https://www.digikey.ca/en/products/detail/kemet/C0603C224J4REC7867/8643651)
-* [CRCW060364R9FKEA - RES SMD 64.9 OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/vishay-dale/CRCW060364R9FKEA/1174533)
-* [GRM0335C1E1R5BA01D - CAP CER 1.5PF 25V C0G/NP0 0201 (0603 Metric)](https://www.digikey.ca/en/products/detail/murata-electronics/GRM0335C1E1R5BA01D/4358584)
+* 2× [ICR18650 2600mAh 3.7V by PKCELL](https://www.batterypkcell.com/pkcell-18650-3-7v-2200mah-new-rechargeable-lithium-battery-product/)
+* [12V 4.2W Solar Panel Module](https://www.amazon.ca/Portable-Polysilicon-Battery-Charger-Efficiency/dp/B07S1P67HL/ref=sr_1_97_sspa?crid=2WAO18NW0X2GN&dib=eyJ2IjoiMSJ9.fZVIoLELaw3YZhhkogK5VGuvzYc6wwH_Px50gEwUL5AK6Nxr_yeX3NtH-g3Q1hlIK30yAnZ0evMQHhDVoLYAm4sbS6SBN7zU1qKFeF3U7BU.zWxxjvWhspQamoYMqpsdiUn7VfXNYG4ixH8fwb_Tuoc&dib_tag=se&keywords=solar+cell&qid=1717475335&s=hi&sprefix=solar+ceil%2Ctools%2C96&sr=1-97-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGZfbmV4dA&psc=1)
+* [Renogy 10 Watt 12 Volt Monocrystalline Solar Panel](https://www.amazon.ca/Renogy-Monocrystalline-Compact-Sprinkler-Applications/dp/B084MGS7KC/ref=mp_s_a_1_3?dib=eyJ2IjoiMSJ9.c6Ibopwzdw26-vXq0iM-t1X8KARw0PDHBEDa3QlSnucRRHnDQTm4tTqQhkWwJL5nBQfEcQG8s4SG3f0IUzD3oGxv7BOgHw_WdngOzWXWF6KB_JtXohbMmgxpaDqCVNrzySHuhJVVXBAElseQOjCSJATDCa9YTwj-vGisQsCN-2uRbedcTW2VFvSyFnXtX7MV--3pARRPw2olqf5FF4tQuw.rWuqIR5JHi2lb0LAExF7YcRQJTtzPzDO3Edo9STDuG8&dib_tag=se&keywords=10%2Bwatt%2Bsolar%2Bpanel&qid=1720388517&sr=8-3&th=1) (More powerful solar panel alternative)
+    * [Datasheet](https://ca.renogy.com/content/renogy-day-2023/RNG-10D-SS-G1Datasheet.pdf)
+    * Optimum Operating Voltage - 18V
+    * Optimum Operating Current - 0.56A
+* [LT3652EMSE#TRPBF](https://www.digikey.ca/en/products/detail/analog-devices-inc/LT3652EMSE-TRPBF/7838158)
+
 
 ## Manufacturing 🪛
 I ordered the board through PCBWay by using the [KiCAD plugin](https://www.pcbway.com/blog/News/PCBWay_Plug_In_for_KiCad_3ea6219c.html). I assembled and soldered the components on the board myself. 
@@ -397,14 +385,6 @@ For the PCBWay specification selection I chose the following options:
     <img title="PCBWay PCB" alt="PCBWay PCB" src="./Images/PCB_Business_Card_PCBWay.jpg" width ="75%">
 </p>
 <p align="center"><i>Final Product</i></p>
-
-## Programming 💻
-Lastly, I programed the IC through the [NFC TagWriter by NXP](https://play.google.com/store/apps/details?id=com.nxp.nfc.tagwriter&hl=en_GB) app.
-
-<p align="center">
-    <img title="PCB GIF" alt="PCB GIF" src="./Images/PCB_GIF.gif" width ="75%">
-</p>
-<p align="center"><i>PCB in Action!</i></p>
 
 ## Characterization 🔬
 Finally, I wanted to characterize the response of the circuit using my Analog Discovery 2 - USB oscilloscope. In particular, I aimed to characterize and visualize the difference in responses when the circuit had and didn't have a tuning capacitor.
