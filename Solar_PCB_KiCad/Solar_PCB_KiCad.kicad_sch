@@ -2500,7 +2500,7 @@
 		)
 		(uuid "1154b33c-46dc-4c16-924e-16ecc6203478")
 	)
-	(text_box "Solar Panel Input\n12V 300mA 4W Max"
+	(text_box "Solar Panel Input\n12V 350mA 4W Max"
 		(exclude_from_sim no)
 		(at 45.72 88.9 0)
 		(size 17.78 12.7)
@@ -2520,7 +2520,7 @@
 		)
 		(uuid "2776f477-9c0e-4cac-9720-6d304cc9ca06")
 	)
-	(text_box "Status pins can sink up to 10mA\n\nI = 12V/2k = 6mA"
+	(text_box "Status pins can sink up to 10mA\n\nI = (12V-2V)/100 = 100mA"
 		(exclude_from_sim no)
 		(at 86.36 101.6 0)
 		(size 20.9296 12.3698)
@@ -3102,7 +3102,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 123.19 105.41 90)
+		(at 132.08 105.41 90)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3111,15 +3111,15 @@
 		(dnp no)
 		(uuid "59f801f1-931b-42de-b413-dc83c5c260a6")
 		(property "Reference" "R2"
-			(at 123.19 111.76 90)
+			(at 132.08 111.76 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "2k"
-			(at 123.19 109.22 90)
+		(property "Value" "100"
+			(at 132.08 109.22 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3127,7 +3127,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 123.19 103.632 90)
+			(at 132.08 103.632 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3136,7 +3136,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 123.19 105.41 0)
+			(at 132.08 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3145,7 +3145,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 123.19 105.41 0)
+			(at 132.08 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3372,7 +3372,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 132.08 105.41 0)
+		(at 123.19 105.41 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3381,7 +3381,7 @@
 		(dnp no)
 		(uuid "994e1e37-1c48-42cb-93e2-53b764f31850")
 		(property "Reference" "D2"
-			(at 133.6675 113.03 0)
+			(at 124.7775 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3389,7 +3389,7 @@
 			)
 		)
 		(property "Value" "RED LED"
-			(at 133.6675 110.49 0)
+			(at 124.7775 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3397,7 +3397,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
-			(at 132.08 105.41 0)
+			(at 123.19 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3406,7 +3406,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 132.08 105.41 0)
+			(at 123.19 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3415,7 +3415,7 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
-			(at 132.08 105.41 0)
+			(at 123.19 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3780,7 +3780,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 132.08 100.33 180)
+		(at 123.19 100.33 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3789,7 +3789,7 @@
 		(fields_autoplaced yes)
 		(uuid "d51c61bd-c3ce-4bdf-b349-3f3387a1387b")
 		(property "Reference" "D1"
-			(at 133.6675 92.71 0)
+			(at 124.7775 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3797,7 +3797,7 @@
 			)
 		)
 		(property "Value" "GREEN LED"
-			(at 133.6675 95.25 0)
+			(at 124.7775 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3805,7 +3805,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
-			(at 132.08 100.33 0)
+			(at 123.19 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3814,7 +3814,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 132.08 100.33 0)
+			(at 123.19 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3823,7 +3823,7 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
-			(at 132.08 100.33 0)
+			(at 123.19 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4118,7 +4118,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 123.19 100.33 90)
+		(at 132.08 100.33 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4127,15 +4127,15 @@
 		(fields_autoplaced yes)
 		(uuid "edf4dfb3-9170-4b6d-bf17-b203a5c4ea6a")
 		(property "Reference" "R1"
-			(at 123.19 93.98 90)
+			(at 132.08 93.98 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "2k"
-			(at 123.19 96.52 90)
+		(property "Value" "100"
+			(at 132.08 96.52 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4143,7 +4143,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 123.19 102.108 90)
+			(at 132.08 102.108 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4152,7 +4152,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 123.19 100.33 0)
+			(at 132.08 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4161,7 +4161,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 123.19 100.33 0)
+			(at 132.08 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)

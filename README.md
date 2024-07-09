@@ -186,13 +186,13 @@ The battery management IC being used in this project is the [LT3652](https://www
 - [x] BOOST Supply
 - [x] VIN/BOOST Start-Up Requirement
 - [x] VBAT Output Decoupling
-- [ ] Inductor Selection
-- [ ] Rectifier Selection
-- [ ] Battery Float Voltage Programming
-- [ ] Input Supply Voltage Regulation
-- [ ] Battery Voltage Temperature Compensation
-- [ ] Status Pins
-- [ ] C/10 Termination
+- [x] Inductor Selection
+- [x] Rectifier Selection
+- [x] Battery Float Voltage Programming
+- [x] Input Supply Voltage Regulation
+- [x] Battery Voltage Temperature Compensation
+- [x] Status Pins
+- [x] C/10 Termination
 
 ### VIN Input Supply
 * A high-quality, low ESR decoupling capacitor is recommended to minimize voltage glitches on VIN
@@ -307,6 +307,14 @@ ${\frac{R_{IN1}}{R_{IN2}}=\left(\frac{V_{IN\left(MIN\right)}}{2.7}\right)-1}$
 
 If the voltage regulation feature is not used, connect the VIN_REG pin to VIN.
 
+For my configuration I will set the ${V_{IN\left(MIN\right)}}$ as 10V 
+
+${\frac{R_{IN1}}{R_{IN2}}=\frac{10}{2.7}-1=2.7037}$
+
+${R_{IN1}=270k}$
+
+${R_{IN2}=100k}$
+
 ### MPPT Temperature Compensation
 
 ### Battery Voltage Temperature Compensation
@@ -340,7 +348,12 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
 <p align="center">
     <img title="LTSpice Schematic Capture" alt="LTSpice Schematic Capture" src="./Simulations/LT3652_Simulation_OUT.png" width ="100%">
 </p>
-<p align="center"><i>LTSpice Charge Simulation 0% --> 100%</i></p>
+<p align="center"><i>LTSpice Charge Simulation 0% --> 100% (Vin vs Vout)</i></p>
+
+<p align="center">
+    <img title="LTSpice CHG LED Status" alt="LTSpice CHG LED Status" src="./Simulations/LT3652_Simulation_LED_Status.png" width ="100%">
+</p>
+<p align="center"><i>LTSpice CHG LED Status</i></p>
 
 ### Layout Considerations
 
@@ -362,6 +375,18 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
     * Optimum Operating Voltage - 18V
     * Optimum Operating Current - 0.56A
 * [LT3652EMSE#TRPBF](https://www.digikey.ca/en/products/detail/analog-devices-inc/LT3652EMSE-TRPBF/7838158)
+* 2× [B5817WS-TP](https://www.digikey.com/en/products/detail/micro-commercial-co/B5817WS-TP/2213553)
+* [MBRS340T3G](https://www.digikey.com/en/products/detail/onsemi/MBRS340T3G/918009)
+* 2× [150060VS75000](https://www.digikey.ca/en/products/detail/w%C3%BCrth-elektronik/150060VS75000/4489906)
+* 2× [ERJ-3EKF1000V](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF1000V/196074)
+* 2× [CL10A106MA8NRNC](https://www.digikey.ca/en/products/detail/samsung-electro-mechanics/CL10A106MA8NRNC/3887527)
+* 2× [CL10A105KA8NNNC](https://www.digikey.ca/en/products/detail/samsung-electro-mechanics/CL10A105KA8NNNC/3886760)
+* [CRL0603-FW-R200ELF](https://www.digikey.ca/en/products/detail/bourns-inc/CRL0603-FW-R200ELF/3784480)
+* [744772200](https://www.digikey.ca/en/products/detail/w%C3%BCrth-elektronik/744772200/3073923)
+* [RC0603FR-07412KL](https://www.digikey.ca/en/products/detail/yageo/RC0603FR-07412KL/727227)
+* [ERJ-3EKF3303V](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF3303V/1746380)
+* [ERJ-3EKF6802V](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF6802V/1746444)
+
 
 
 ## Manufacturing 🪛
