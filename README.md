@@ -374,18 +374,18 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
     * [Datasheet](https://ca.renogy.com/content/renogy-day-2023/RNG-10D-SS-G1Datasheet.pdf)
     * Optimum Operating Voltage - 18V
     * Optimum Operating Current - 0.56A
-* [LT3652EMSE#TRPBF](https://www.digikey.ca/en/products/detail/analog-devices-inc/LT3652EMSE-TRPBF/7838158)
-* 2× [B5817WS-TP](https://www.digikey.com/en/products/detail/micro-commercial-co/B5817WS-TP/2213553)
-* [MBRS340T3G](https://www.digikey.com/en/products/detail/onsemi/MBRS340T3G/918009)
-* 2× [150060VS75000](https://www.digikey.ca/en/products/detail/w%C3%BCrth-elektronik/150060VS75000/4489906)
-* 2× [ERJ-3EKF1000V](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF1000V/196074)
-* 2× [CL10A106MA8NRNC](https://www.digikey.ca/en/products/detail/samsung-electro-mechanics/CL10A106MA8NRNC/3887527)
-* 2× [CL10A105KA8NNNC](https://www.digikey.ca/en/products/detail/samsung-electro-mechanics/CL10A105KA8NNNC/3886760)
-* [CRL0603-FW-R200ELF](https://www.digikey.ca/en/products/detail/bourns-inc/CRL0603-FW-R200ELF/3784480)
-* [744772200](https://www.digikey.ca/en/products/detail/w%C3%BCrth-elektronik/744772200/3073923)
-* [RC0603FR-07412KL](https://www.digikey.ca/en/products/detail/yageo/RC0603FR-07412KL/727227)
-* [ERJ-3EKF3303V](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF3303V/1746380)
-* [ERJ-3EKF6802V](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF6802V/1746444)
+* [LT3652EMSE#TRPBF - IC BATT CHG MULTI-CHEM 12MSOP](https://www.digikey.ca/en/products/detail/analog-devices-inc/LT3652EMSE-TRPBF/7838158)
+* 2× [B5817WS-TP - DIODE SCHOTTKY 20V 1A SOD323](https://www.digikey.com/en/products/detail/micro-commercial-co/B5817WS-TP/2213553)
+* [MBRS340T3G - DIODE SCHOTTKY 40V 3A SMC](https://www.digikey.com/en/products/detail/onsemi/MBRS340T3G/918009)
+* 2× [150060VS75000 - LED GREEN CLEAR 0603 SMD](https://www.digikey.ca/en/products/detail/w%C3%BCrth-elektronik/150060VS75000/4489906)
+* 2× [ERJ-3EKF1101V - RES SMD 1.1K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF1101V/196037)
+* 2× [CL10A106MA8NRNC - CAP CER 10UF 25V X5R 0603](https://www.digikey.ca/en/products/detail/samsung-electro-mechanics/CL10A106MA8NRNC/3887527)
+* 2× [CL10A105KA8NNNC - CAP CER 1UF 25V X5R 0603](https://www.digikey.ca/en/products/detail/samsung-electro-mechanics/CL10A105KA8NNNC/3886760)
+* [CRL0603-FW-R200ELF - RES 0.2 OHM 1% 1/8W 0603](https://www.digikey.ca/en/products/detail/bourns-inc/CRL0603-FW-R200ELF/3784480)
+* [744772200 - FIXED IND 20UH 2.6A 50 MOHM TH](https://www.digikey.ca/en/products/detail/w%C3%BCrth-elektronik/744772200/3073923)
+* [RC0603FR-07412KL - RES 412K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/yageo/RC0603FR-07412KL/727227)
+* [ERJ-3EKF3303V - RES SMD 330K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF3303V/1746380)
+* [ERJ-3EKF6802V - RES SMD 68K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF6802V/1746444)
 
 
 
