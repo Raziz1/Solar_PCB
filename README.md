@@ -386,6 +386,8 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
 * [RC0603FR-07412KL - RES 412K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/yageo/RC0603FR-07412KL/727227)
 * [ERJ-3EKF3303V - RES SMD 330K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF3303V/1746380)
 * [ERJ-3EKF6802V - RES SMD 68K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF6802V/1746444)
+* [ERJ-3EKF1003V - RES SMD 100K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF1003V/196075)
+* [ERJ-3EKF2703V - RES SMD 270K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF2703V/1746359)
 
 
 
