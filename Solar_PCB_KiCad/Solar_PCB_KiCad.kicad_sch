@@ -2987,6 +2987,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 175.26 71.12 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1fa16e75-28c1-4063-a3dc-7081a2c59e0a")
+		(property "Reference" "D4"
+			(at 173.99 74.676 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "D_Schottky"
+			(at 171.958 70.866 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-323"
+			(at 175.26 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/B5817WS-B5819WS(SOD-323).PDF"
+			(at 175.26 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Schottky diode"
+			(at 175.26 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9e26a2c9-b13b-4b20-ad89-c3fde4b2afd3")
+		)
+		(pin "2"
+			(uuid "0f83ac95-55c6-4d87-9c84-192eb599800a")
+		)
+		(instances
+			(project "Solar_PCB_KiCad"
+				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
+					(reference "D4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 212.09 88.9 0)
 		(unit 1)
@@ -3047,76 +3114,6 @@
 			(project "Solar_PCB_KiCad"
 				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
 					(reference "#PWR08")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Schottky")
-		(at 175.26 71.12 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "266ab178-eecf-4243-a272-254448615455")
-		(property "Reference" "D4"
-			(at 178.3771 70.1674 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "D_Schottky"
-			(at 178.3771 72.7074 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SMC"
-			(at 175.26 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.onsemi.com/pdf/datasheet/mbrs340t3-d.pdf"
-			(at 175.26 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Schottky diode"
-			(at 175.26 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3dcd44bc-2d78-4cf0-9474-ba24122b90c9")
-		)
-		(pin "2"
-			(uuid "7b699235-a945-4666-af40-ec80bd2db781")
-		)
-		(instances
-			(project "Solar_PCB_KiCad"
-				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
-					(reference "D4")
 					(unit 1)
 				)
 			)
