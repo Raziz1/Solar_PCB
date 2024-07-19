@@ -1,6 +1,6 @@
 LTspice 24.0.12 for Windows
 Circuit: * C:\Users\rahim\Downloads\KiCad Projects\Solar_PCB\Simulations\LT3652_Simulation.asc
-Start Time: Wed Jul 10 22:24:07 2024
+Start Time: Fri Jul 19 10:13:01 2024
 solver = Normal
 Maximum thread count: 8
 tnom = 27
@@ -28,6 +28,6 @@ Gmin = 2.70769e-13
 Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
-Heightened Def Con from 0.00742475 to 0.00742475
-Total elapsed time: 22.945 seconds.
+Heightened Def Con from 0.000200348 to 0.000200349
+Total elapsed time: 8.799 seconds.
 

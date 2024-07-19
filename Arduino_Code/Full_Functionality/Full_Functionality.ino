@@ -76,6 +76,7 @@ void loop() {
     Narcoleptic.delay(10000); //uncalibrated delay for 10s
     Narcoleptic.enableSerial();
     readTEMP();
+    //writeTEMP();
     Serial.flush();
     Narcoleptic.disableSerial();
   }
@@ -125,7 +126,7 @@ void putEEPROM()
   Serial.flush();
   Serial.println("Enter EEPROM address (0-1023) to write: ");
   while (!Serial.available()); // Wait until data is available
-  int writeAddress = Serial.parseInt(); // Read the integer from Serial input
+  writeAddress = Serial.parseInt(); // Read the integer from Serial input
 
   // Check if the entered address is within the valid range
   if (writeAddress >= 0 && writeAddress < EEPROM.length()) {

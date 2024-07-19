@@ -200,7 +200,7 @@ The battery management IC being used in this project is the [LT3652](https://www
 #### RMS Ripple Current
 ${I_{CVIN\left(RMS\right)}≅I_{CHG\left(MAX\right)}•\left(V_{BAT}/V_{IN}\right)•\left(\left[V_{IN}/V_{BAT}\right]-1\right)^{\frac{1}{2}}}$
 
-${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.2431\thinspace A}$
+${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.19447\thinspace A}$
 
 * where ${I_{CHG\left(MAX\right)}}$ is the maximum average charge current
 (100mV/${R_{SENSE}}$).
@@ -211,7 +211,7 @@ used for design.
 Bulk capacitance is a function of desired input ripple voltage (ΔVIN), and follows the relation:
 ${C_{IN{\left(BULK\right)}}=I_{CHG{\left(MAX\right)}}•\left(V_{BAT}/V_{IN}\right)/∆V_{IN}\thinspace \left(µF\right)}$
 
-${C_{IN\left(BULK\right)}=0.5\cdot \frac{\left(\frac{7.4}{12}\right)}{0.1}=3.083\thinspace uF}$
+${C_{IN\left(BULK\right)}=0.4\cdot \frac{\left(\frac{7.4}{12}\right)}{0.1}=2.46\thinspace uF}$
 
 * Input ripple voltages above 0.1V are not recommended. 10µF is typically adequate for most charger applications.
 
@@ -220,9 +220,9 @@ The data sheet describes the charge current programming as follows: <i>"The LT36
 
 ${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}}$
 
-The maximum charging current is limited by the maximum current output of the solar panel, which is 350 mA. Therefore, we can set the limit to 500 mA to allow for some headroom.
+The maximum charging current is limited by the maximum current output of the solar panel, which is 350 mA. Therefore, we can set the limit to 400 mA to allow for some headroom.
 
-${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}=0.1/0.5=0.2Ω}$
+${R_{SENSE}\thinspace = \thinspace 0.1/I_{CHG\left(MAX\right)}=0.1/0.4=0.25Ω}$
 
 ### BOOST Supply
 The voltage on the decoupling capacitor is refreshed through a diode, with the anode connected to either the battery output voltage or an external source, and the cathode connected to the BOOST pin. Rate the diode average current greater than 0.1A, and reverse voltage greater than VIN(MAX).
@@ -238,12 +238,13 @@ longer applies.
 
 ### VBAT Output Decoupling
 An LT3652 charger output requires bypass capacitance connected from the BAT pin to ground (CBAT). A 10µF ceramic capacitor is required for all applications.
+* If it is desired to operate a system load from the LT3652 charger output when the battery is disconnected, additional bypass capacitance is required. In this type of application, excessive ripple and/or low amplitude oscillations can occur without additional output bulk capacitance. For these applications, place a 100µF low ESR non-ceramic capacitor (chip tantalum or organic semiconductor capacitors such as Sanyo OS-CONs or POSCAPs) from BAT to ground, in parallel with the 10µF ceramic bypass capacitor. This additional bypass capacitance may also be required in systems where the battery is connected to the charger with long wires. The voltage rating of CBAT must meet or exceed the battery float voltage.
 
 ### Inductor Selection
 The primary criterion for inductor value selection in an LT3652 charger is the ripple current created in that inductor.
 * Once the inductance value is determined, an inductor must also have a saturation current equal to or exceeding the maximum peak current in the inductor
 * ${L=\frac{10•R_{SENSE}}{\frac{ΔI_L}{I_{CHG\left(MAX\right)}}}•V_{BAT\left(FLT\right)}•\left(1-\frac{V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\thinspace \left(µH\right)}$
-    * ${L=\frac{10\cdot 0.2}{\frac{0.15}{0.5}}\cdot 7.4\cdot \left(1-\frac{7.4}{12}\right)=18.91\thinspace uH}$    
+    * ${L=\frac{10\cdot 0.2}{\frac{0.12}{0.4}}\cdot 7.4\cdot \left(1-\frac{7.4}{12}\right)=23.64\thinspace uH}$    
 * In the above relation, VIN(MAX) is the maximum operational voltage. Ripple current is typically set within a range of 25% to 35% of ICHG(MAX), so an inductor value can be determined by setting 0.25 < ΔIL/ICHG(MAX) < 0.35
 * Magnetics vendors typically specify inductors with maximum RMS and saturation current ratings. Select an inductor that has a saturation current rating at or above ${\left(1+ΔI_{MAX}/2\right)•I_{CHG\left(MAX\right)}}$, and an RMS rating above ${I_{CHG\left(MAX\right)}}$.
 * Inductors must also meet a maximum voltsecond product requirement. If this specification is not in the data sheet of an inductor, consult the vendor to make sure the maximum volt-second product is not being exceeded by your design. The minimum required volt-second product is: ${V_{BAT\left(FLT\right)}•\left(\frac{1-V_{BAT\left(FLT\right)}}{V_{IN\left(MAX\right)}}\right)\left(V•\thinspace µS\right)}$
@@ -256,9 +257,9 @@ is calculated with maximum output current (${I_{CHG\left(MAX\right)}}$),
 maximum operational VIN, and output at the precondition
 threshold (${V_{BAT\left(PRE\right)},\thinspace or\thinspace 0.7•V_{BAT\left(FLT\right)}}$): ${I_{DIODE\left(MAX\right)}>I_{CHG\left(MAX\right)}•\frac{V_{IN\left(MAX\right)}-V_{BAT\left(PRE\right)}}{V_{IN\left(MAX\right)}}\left(A\right)}$
 
-${I_{DIODE\left(MAX\right)}>0.5\cdot \frac{12-5.18}{12}}$
+${I_{DIODE\left(MAX\right)}>0.4\cdot \frac{12-5.18}{12}}$
 
-${I_{DIODE\left(MAX\right)}>0.2841\thinspace A}$
+${I_{DIODE\left(MAX\right)}>0.2273\thinspace A}$
 
 ### Battery Float Voltage Programming
 The output battery float voltage (VBAT(FLT)) is programmed by connecting a resistor divider from the BAT pin to VFB. VBAT(FLT) can be programmed up to 14.4V.
