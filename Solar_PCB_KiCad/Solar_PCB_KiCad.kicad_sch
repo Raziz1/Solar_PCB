@@ -3011,7 +3011,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323"
+		(property "Footprint" "Diode_SMD:D_SMC_Handsoldering"
 			(at 175.26 71.12 0)
 			(effects
 				(font
@@ -3275,7 +3275,7 @@
 				)
 			)
 		)
-		(property "Value" "20uH"
+		(property "Value" "24uH"
 			(at 186.69 78.74 90)
 			(effects
 				(font
@@ -3283,7 +3283,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_THT:L_Radial_D7.8mm_P5.00mm_Fastron_07HCP"
+		(property "Footprint" "Inductor_SMD:L_Wuerth_WE-PDF_Handsoldering"
 			(at 186.69 81.28 0)
 			(effects
 				(font
