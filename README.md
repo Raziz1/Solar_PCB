@@ -2,7 +2,7 @@
 The following project is a power management PCB designed to charge a lithium-ion battery using a solar panel and discharge it into an Arduino for low-power applications.
 
 <p align="center">
-    <img title="PCB Business Card Render" alt="PCB Business Card" src="./Blender_Render/PCB_Business_Card_Blender.png" width ="75%">
+    <img title="Solar PCB Render" alt="Solar PCB Render" src="./Blender_Render/Solar_PCB_Render.png" width ="75%">
 </p>
 <p align="center"><i>Blender Render</i></p>
 
@@ -357,6 +357,9 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
 <p align="center"><i>LTSpice CHG LED Status</i></p>
 
 ### Layout Considerations
+<p align="center">
+    <img title="Layout Considerations" alt="Layout Considerations" src="./Images/Layout_Considerations.png" width ="75%">
+</p>
 
 ## PCB Design
 <p align="center">
