@@ -420,56 +420,6 @@ For the PCBWay specification selection I chose the following options:
 ## Characterization 🔬
 Finally, I wanted to characterize the response of the circuit using my Analog Discovery 2 - USB oscilloscope. In particular, I aimed to characterize and visualize the difference in responses when the circuit had and didn't have a tuning capacitor.
 
-### No Tuning Capacitor
-
-The first order of business was to utilize the network analyzer feature on the Analog Discovery 2. By attaching the wave generator on one end of the antenna and probing on the other we could sweep through various frequencies and observe the circuits response.
-
-<p align="center">
-    <img title="Network Analyzer" alt="Network Analyzer" src="./Images/Network_Analysis.png" width ="100%">
-</p>
-<p align="center"><i>Network Analyzer</i></p>
-
-The above graph describes the S11 parameter, which represents the return loss of a device, indicating how much of the input power supplied to the device reflects back to the input port. We observe that at 14 MHz, the graph dips to a gain of -44.9 dB. This indicates that at 14 MHz, the magnitude of the reflected signal is lower than the magnitude of the incident signal. This implies that the antenna is absorbing the incident energy rather than reflecting it back towards the source. This response closely matches what we simulated previously in LTspice and MATLAB. For an NFC antenna, this behavior is desirable at 13.56 MHz. We can generate a graph with a dip closer to 13.56 MHz by including the tuning capacitor!
-
-
-<p align="center">
-    <img title="Spectrum Analyzer" alt="Spectrum Analyzer" src="./Images/Spectrum_Analysis.png" width ="100%">
-</p>
-<p align="center"><i>Spectrum Analyzer</i></p>
-
-Lastly, during the operation of the circuit, we can utilize the spectrum analyzer to observe the magnitude of the incoming signal. Keep in mind that this circuit doesn't contain a tuning capacitor. This was achieved by probing both ends of the antenna. Once a phone was brought within operating distance, we could see that the antenna contained a signal with a magnitude of 12.37 dB at 13.56 MHz.
-
-### Tuning Capacitor Included (3.9pF)
-
-By introducing a tuning capacitor with a value of 3.9pF, I was able to adjust the circuit's response to achieve resonance closer to the NFC standard of 13.56 MHz. Below is the graph produced by the network analyzer. We can see that this time the graph dips at a frequency of 13.555 MHz with a gain of -44.34 dB.
-
-<p align="center">
-    <img title="Network Analyzer Tuned" alt="Network Analyzer Tuned" src="./Images/Network_Analysis_Tuned.png" width ="100%">
-</p>
-<p align="center"><i>Network Analyzer</i></p>
-
-<p align="center">
-    <img title="Spectrum Analyzer Tuned" alt="Spectrum Analyzer Tuned" src="./Images/Spectrum_Analysis_Tuned.png" width ="100%">
-</p>
-<p align="center"><i>Spectrum Analyzer</i></p>
-
-Utilizing the same process as the previous spectrum analysis, we can observe that the antenna contained a signal with a magnitude of 12.494 dB at 13.562 MHz.
-
-### Poorly Tuned NFC Antenna
-By introducing a really large tuning capacitor with a value of 15pF, we can adjust the circuit's response to achieve resonance at 12.5 MHz. Given the poorly tuned antenna, we expect to either see that the NFC capabilities cease to work or that the magnitude of the NFC signal is extremely weak. We can quantify this by utilizing the same spectrum analysis technique as used in the previous examples.
-
-<p align="center">
-    <img title="Spectrum Analyzer Poorly Tuned" alt="Spectrum Analyzer Poorly Tuned" src="./Images/Poorly_Tuned_NFC.png" width ="100%">
-</p>
-<p align="center"><i>Spectrum Analyzer of Poorly Tuned Antenna</i></p>
-
-With the poorly tuned antenna, the NFC capabilities continued to work. However, it did require the phone to be slightly closer to the antenna. Additionally, based on the above graph, we can see that the magnitude of the NFC signal (13.56MHz) is significantly weaker than in previous examples.
-
-<p align="center">
-    <img title="NFC Transmission" alt="NFC Transmission" src="./Images/NFC_Transmission.png" width ="100%">
-</p>
-<p align="center"><i>NFC Transmission</i></p>
-
 # Resources
 * [Guide to designing antennas for the NTAG I2C plus
 ](https://community.nxp.com/t5/NXP-Designs-Knowledge-Base/Guide-to-designing-antennas-for-the-NTAG-I2C-plus/ta-p/1104729#toc-hId--56223682)
