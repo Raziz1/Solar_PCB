@@ -357,9 +357,19 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
 <p align="center"><i>LTSpice CHG LED Status</i></p>
 
 ### Layout Considerations
+* The switch node (Pin SW) trace should be kept as short as possible to minimize high frequency noise.
+* The input capacitor (CIN) should be placed close to the IC to minimize this switching noise.
+* Short, wide traces on these nodes also help to avoid voltage stress from inductive ringing.
+* The BOOST decoupling capacitor should also be in close proximity to the IC to minimize inductive ringing.
+* The SENSE and BAT traces should be routed together, and these and the VFB trace should be kept as short as possible. Shielding these signals from switching noise with a ground plane is recommended.
+* High current paths and transients should be kept isolated from battery ground, to assure an accurate output voltage reference.
+* The LT3652 packaging has been designed to efficiently remove heat from the IC via the Exposed Pad on the backside of the package, which is soldered to a copper footprint on the PCB. This footprint should be made as large as possible to reduce the thermal resistance of the IC case to ambient air.
+
 <p align="center">
     <img title="Layout Considerations" alt="Layout Considerations" src="./Images/Layout_Considerations.png" width ="75%">
 </p>
+<p align="center"><i>Layout power loops</i></p>
+
 
 ## PCB Design
 <p align="center">
