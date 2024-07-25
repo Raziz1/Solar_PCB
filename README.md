@@ -370,7 +370,6 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
 </p>
 <p align="center"><i>Layout power loops</i></p>
 
-
 ## PCB Design
 <p align="center">
     <img title="KiCad Schematic Design" alt="KiCad Schematic Design" src="./Images/Schematic_Image.png" width ="75%">
@@ -380,6 +379,21 @@ When C/10 termination is used, a LT3652 charger will source battery charge curre
     <img title="KiCad PCB Design" alt="KiCad PCB Design" src="./Images/PCB_Image.png" width ="75%">
 </p>
 <p align="center"><i>PCB Design</i></p>
+
+### Design Choices
+* I have incorporated 6 vias beneath the ground pad of the LT3652, connecting to the bottom layer ground plane. This design choice aims to improve thermal dissipation by effectively transferring heat away from the chip and to the lower ground plane.
+* I have placed grounded via stitching all along the edge of the board to achieve multiple benefits: reducing electromagnetic emissions by containing radially propagating waves, improving shielding to protect internal circuitry from external interference, and enhancing ground connectivity by linking ground planes across different layers, thereby ensuring efficient current return paths and low impedance. These measures are crucial for meeting electromagnetic compatibility (EMC) regulations and optimizing circuit performance.
+* Via stitching has been strategically applied around traces and components associated with high-frequency switching nodes, along with sensitive feedback lines. This technique is known as shielding and helps prevent the coupling of EM waves into stray traces in two ways: The loop inductance in the via region is lower because the via is closer to ground Being closer to ground causes the signal via/ground via transition to dominate the total capacitance experienced along the via.
+    * You can calculate the maximum frequency that a given array of stitching vias will shield against based on their spacing. ${f_{max}=\frac{c}{8\cdot \:s\cdot \sqrt{ε_r}}=\frac{299792458}{8\:\cdot \:0.002\cdot \sqrt{4.4}}=8.93GHz}$
+        * (c) - The speed of light 299792458 m/s
+        * (s) - The spacing between Via's
+        * (ε) - relative permittivity (εr) of the PCB material. For FR-4 ≈ 4.4
+
+<p align="center">
+    <img title="Layout Power Loops" alt="Layout Powre Loops" src="./Images/Solar_PCB_Power_Loops.png" width ="75%">
+</p>
+<p align="center"><i>Layout power loops</i></p>
+
 
 ## Final BOM 📃
 * 2× [ICR18650 2600mAh 3.7V by PKCELL](https://www.batterypkcell.com/pkcell-18650-3-7v-2200mah-new-rechargeable-lithium-battery-product/)
