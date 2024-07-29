@@ -340,6 +340,20 @@ If the battery is removed from an LT3652 charger that is configured for C/10 ter
 The LT3652 supports a low-current based termination scheme, where a battery charge cycle terminates when the current output from the charger falls to below one-tenth of the maximum current, as programmed with RSENSE. The C/10 threshold current corresponds to 10mV across RSENSE. This termination mode is engaged by shorting the TIMER pin to ground.
 When C/10 termination is used, a LT3652 charger will source battery charge current as long as the average current level remains above the C/10 threshold. As the full-charge float voltage is achieved, the charge current falls until the C/10 threshold is reached, at which time the charger terminates and the LT3652 enters standby mode. The CHRG status pin follows the charger cycle, and is high impedance when the charger is not actively charging. When VBAT drops below 97.5% of the full-charged float voltage, whether by battery loading or replacement of the battery, the charger automatically re-engages and starts charging. There is no provision for bad battery detection if C/10 termination is used.
 
+## Thermal Consideration
+A schottky diode is placed at the output of a solar panel primarily to prevent reverse current flow, which can discharge the battery at night or during low-light conditions. I have selected a schottky diode that can be seen in the BOM further down. One thing to consider is the thermal performance of this diode. 
+
+According to the datasheet we expect this to operate with an average forward voltage drop of 0.45V. We also expect the at the solar panel's peak performance for it to sink 350mA.
+
+${P=V\cdot \:I=0.45\cdot 0.350=0.1575\:Watts}$
+
+According to the datasheet the maximum thermal resistance is 500°C/W from junction to ambient. Therefore we would expect the diode to rise above ambient temperature by...
+
+${T=500°C/W\cdot 0.1575W=78.75°C}$
+
+While this is technically within the operating specifications of the diode, it would be wise to consider a diode with superior thermal performance to prevent potential thermal runaway.
+
+
 ## Simulation
 <p align="center">
     <img title="LTSpice Schematic Capture" alt="LTSpice Schematic Capture" src="./Simulations/LT3652_Schematic.png" width ="100%">
