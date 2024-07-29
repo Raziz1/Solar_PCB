@@ -1358,6 +1358,12 @@
 		(uuid "3774d7ba-a2d5-4864-92a7-6d203b9a0644")
 	)
 	(junction
+		(at 204.47 101.6)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3cc01668-0210-4166-92ba-4c056240615c")
+	)
+	(junction
 		(at 116.84 77.47)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1374,6 +1380,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9208926b-8005-4630-80cc-3da252c13133")
+	)
+	(junction
+		(at 81.28 77.47)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "93e15041-3152-4195-8b96-1dd2c171ce4f")
 	)
 	(junction
 		(at 139.7 77.47)
@@ -1527,7 +1539,7 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 77.47) (xy 78.74 77.47)
+			(xy 63.5 77.47) (xy 68.58 77.47)
 		)
 		(stroke
 			(width 0)
@@ -1757,6 +1769,16 @@
 	)
 	(wire
 		(pts
+			(xy 76.2 77.47) (xy 81.28 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77fa8915-38b2-42c2-b80b-5019bc293e73")
+	)
+	(wire
+		(pts
 			(xy 119.38 100.33) (xy 116.84 100.33)
 		)
 		(stroke
@@ -1767,6 +1789,16 @@
 	)
 	(wire
 		(pts
+			(xy 81.28 77.47) (xy 90.17 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c933541-d4fc-47e5-80a7-5aa263acd3c8")
+	)
+	(wire
+		(pts
 			(xy 127 105.41) (xy 128.27 105.41)
 		)
 		(stroke
@@ -1774,6 +1806,16 @@
 			(type default)
 		)
 		(uuid "7de77db8-872a-479b-9286-56e503240b22")
+	)
+	(wire
+		(pts
+			(xy 204.47 101.6) (xy 204.47 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80d12af8-c9bb-4b01-84b5-242f0fa7879b")
 	)
 	(wire
 		(pts
@@ -1807,6 +1849,16 @@
 	)
 	(wire
 		(pts
+			(xy 204.47 116.84) (xy 204.47 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "88312ce6-0b64-42ae-ac28-9ee8c6ec37cd")
+	)
+	(wire
+		(pts
 			(xy 193.04 99.06) (xy 168.91 99.06)
 		)
 		(stroke
@@ -1814,6 +1866,16 @@
 			(type default)
 		)
 		(uuid "8a962fd4-2fdf-4919-bc36-5f764e2de402")
+	)
+	(wire
+		(pts
+			(xy 81.28 77.47) (xy 81.28 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8bcd026c-9338-4954-9e0c-4103efdc014d")
 	)
 	(wire
 		(pts
@@ -1957,6 +2019,16 @@
 	)
 	(wire
 		(pts
+			(xy 81.28 87.63) (xy 81.28 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b2c5396b-f86c-4165-a1f5-0619dba2b0f3")
+	)
+	(wire
+		(pts
 			(xy 241.3 83.82) (xy 241.3 88.9)
 		)
 		(stroke
@@ -2014,16 +2086,6 @@
 			(type default)
 		)
 		(uuid "bc57b873-9d5a-4392-b042-3e7948e6fa44")
-	)
-	(wire
-		(pts
-			(xy 86.36 77.47) (xy 90.17 77.47)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bdca320e-b4db-4984-ac00-89660f9658d7")
 	)
 	(wire
 		(pts
@@ -2184,6 +2246,30 @@
 			(type default)
 		)
 		(uuid "fe7ed174-8abe-466b-a244-8e4373fc88f3")
+	)
+	(rectangle
+		(start 201.93 109.22)
+		(end 207.01 116.84)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 7e52079b-bfc2-421e-a658-529417c179b8)
+	)
+	(rectangle
+		(start 78.74 80.01)
+		(end 83.82 87.63)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(uuid d4c6b9dd-9098-46f2-80f9-cc1f04b2d7bb)
 	)
 	(image
 		(at 111.4806 138.7729)
@@ -2768,6 +2854,26 @@
 		)
 		(uuid "6801685e-2403-4891-bd43-9179464311f3")
 	)
+	(text_box "Optional output bypass capacitance for if you want to operate load without battery.\nPlace a 100µF low ESR non-ceramic capacitor (chip tantalum or organic semiconductor capacitors such as Sanyo OS-CONs or POSCAPs) from BAT to ground"
+		(exclude_from_sim no)
+		(at 212.09 109.22 0)
+		(size 33.02 15.24)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(fill
+			(type color)
+			(color 255 253 215 1)
+		)
+		(effects
+			(font
+				(size 1.016 1.016)
+			)
+			(justify left top)
+		)
+		(uuid "a09742a3-2c8a-4478-b1d5-8e64c3ed56f9")
+	)
 	(text_box "Schottky to protect solar panel"
 		(exclude_from_sim no)
 		(at 73.66 59.69 0)
@@ -2827,6 +2933,26 @@
 			(justify left top)
 		)
 		(uuid "e0b97d31-f9db-4ab6-be06-137564f7df8b")
+	)
+	(text "DNP"
+		(exclude_from_sim no)
+		(at 204.47 118.618 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "76c97e47-8307-41cc-b342-7b5c8a320454")
+	)
+	(text "DNP"
+		(exclude_from_sim no)
+		(at 81.28 89.408 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "aaab1c43-8223-40dd-9de5-a8c0b6e90b1d")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -3154,6 +3280,75 @@
 			(project "Solar_PCB_KiCad"
 				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
 					(reference "#PWR08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 81.28 83.82 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2c77fb94-79d6-4774-b11c-57ee753464e4")
+		(property "Reference" "C5"
+			(at 83.82 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10u"
+			(at 83.82 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 82.2452 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/658/CL10A106MA8NRNC_Spec.pdf"
+			(at 81.28 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 81.28 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "e3aba02a-7641-42fe-aac6-a2b60501a4e5")
+		)
+		(pin "1"
+			(uuid "eb5d7959-d924-4e35-b5b5-e76f7f37344d")
+		)
+		(instances
+			(project "Solar_PCB_KiCad"
+				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -3641,6 +3836,75 @@
 	)
 	(symbol
 		(lib_id "Device:C")
+		(at 204.47 113.03 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "63fc4e19-1a7b-4cf9-9fba-62b58097721f")
+		(property "Reference" "C6"
+			(at 207.01 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100u"
+			(at 207.01 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 205.4352 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/658/CL10A106MA8NRNC_Spec.pdf"
+			(at 204.47 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 204.47 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7caed013-2bcf-4927-ab8f-c5da570112b6")
+		)
+		(pin "1"
+			(uuid "6a34389b-bc15-4c42-b1a7-a625b95540e3")
+		)
+		(instances
+			(project "Solar_PCB_KiCad"
+				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
+					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
 		(at 175.26 88.9 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3704,6 +3968,72 @@
 			(project "Solar_PCB_KiCad"
 				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
 					(reference "C2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 204.47 119.38 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "67367a2c-40a9-4c8c-b1a7-75cf7ff0b252")
+		(property "Reference" "#PWR012"
+			(at 204.47 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 204.47 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 204.47 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 204.47 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 204.47 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fa73d65a-69aa-4293-a4bd-bfa9c4b1ef77")
+		)
+		(instances
+			(project "Solar_PCB_KiCad"
+				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -4252,10 +4582,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "c5dd6a74-b7b0-4979-a909-17fad76d84cf")
 		(property "Reference" "C1"
-			(at 201.93 111.7599 0)
+			(at 191.77 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4264,7 +4593,7 @@
 			)
 		)
 		(property "Value" "10u"
-			(at 201.93 114.2999 0)
+			(at 191.77 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4309,6 +4638,72 @@
 			(project ""
 				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
 					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 81.28 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ca76881b-a2a0-4d58-a977-66797d871910")
+		(property "Reference" "#PWR011"
+			(at 81.28 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 81.28 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 81.28 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 81.28 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 81.28 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "34b03523-9772-46f4-a66c-aaa235723025")
+		)
+		(instances
+			(project "Solar_PCB_KiCad"
+				(path "/6af0d19f-b029-4f07-94ac-1aca616d65fb"
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -4452,16 +4847,15 @@
 	)
 	(symbol
 		(lib_id "Device:D_Schottky")
-		(at 82.55 77.47 180)
+		(at 72.39 77.47 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "d64c3752-0d2e-40a8-92ad-9700df7deb42")
 		(property "Reference" "D5"
-			(at 82.8675 71.12 0)
+			(at 72.39 82.804 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4469,7 +4863,7 @@
 			)
 		)
 		(property "Value" "D_Schottky"
-			(at 82.8675 73.66 0)
+			(at 72.39 80.518 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4477,7 +4871,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-323"
-			(at 82.55 77.47 0)
+			(at 72.39 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4486,7 +4880,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/B5817WS-B5819WS(SOD-323).PDF"
-			(at 82.55 77.47 0)
+			(at 72.39 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4495,7 +4889,7 @@
 			)
 		)
 		(property "Description" "Schottky diode"
-			(at 82.55 77.47 0)
+			(at 72.39 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
