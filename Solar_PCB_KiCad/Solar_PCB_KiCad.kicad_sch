@@ -4870,7 +4870,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323"
+		(property "Footprint" "Diode_SMD:D_SMP_DO-220AA"
 			(at 72.39 77.47 0)
 			(effects
 				(font
@@ -4879,7 +4879,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/B5817WS-B5819WS(SOD-323).PDF"
+		(property "Datasheet" "https://www.vishay.com/docs/88910/ss2p2.pdf"
 			(at 72.39 77.47 0)
 			(effects
 				(font

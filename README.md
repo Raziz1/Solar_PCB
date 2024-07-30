@@ -340,18 +340,24 @@ If the battery is removed from an LT3652 charger that is configured for C/10 ter
 The LT3652 supports a low-current based termination scheme, where a battery charge cycle terminates when the current output from the charger falls to below one-tenth of the maximum current, as programmed with RSENSE. The C/10 threshold current corresponds to 10mV across RSENSE. This termination mode is engaged by shorting the TIMER pin to ground.
 When C/10 termination is used, a LT3652 charger will source battery charge current as long as the average current level remains above the C/10 threshold. As the full-charge float voltage is achieved, the charge current falls until the C/10 threshold is reached, at which time the charger terminates and the LT3652 enters standby mode. The CHRG status pin follows the charger cycle, and is high impedance when the charger is not actively charging. When VBAT drops below 97.5% of the full-charged float voltage, whether by battery loading or replacement of the battery, the charger automatically re-engages and starts charging. There is no provision for bad battery detection if C/10 termination is used.
 
-## Thermal Consideration
-A schottky diode is placed at the output of a solar panel primarily to prevent reverse current flow, which can discharge the battery at night or during low-light conditions. I have selected a schottky diode that can be seen in the BOM further down. One thing to consider is the thermal performance of this diode. 
+## Thermal Consideration 🔥
+A schottky diode is placed at the output of a solar panel primarily to prevent reverse current flow, which can discharge the battery at night or during low-light conditions. For this schottky diode I had originally chosen the [B5817WS-TP](https://www.digikey.com/en/products/detail/micro-commercial-co/B5817WS-TP/2213553). One thing to consider is the thermal performance of this diode. 
 
-According to the datasheet we expect this to operate with an average forward voltage drop of 0.45V. We also expect the at the solar panel's peak performance for it to sink 350mA.
+According to the datasheet, we expect this to operate with an average forward voltage drop of 0.45V. We also expect it to sink 350mA at the solar panel's peak performance.
 
-${P=V\cdot \:I=0.45\cdot 0.350=0.1575\:Watts}$
+${P=V\cdot I=0.45\cdot 0.350=0.1575\ Watts}$
 
-According to the datasheet the maximum thermal resistance is 500°C/W from junction to ambient. Therefore we would expect the diode to rise above ambient temperature by...
+According to the datasheet the maximum thermal resistance is 500°C/W from junction to ambient. Therefore we would expect the diode to rise above ambient temperature by:
 
 ${T=500°C/W\cdot 0.1575W=78.75°C}$
 
 While this is technically within the operating specifications of the diode, it would be wise to consider a diode with superior thermal performance to prevent potential thermal runaway.
+
+As such, a suitable alternative with a slightly larger case size would be the [SMD22PL-TP](https://www.digikey.ca/en/products/detail/micro-commercial-co/SMD22PL-TP/1793265). By using the same calculations as above, we can expect the following power dissipation:
+
+${P=V\cdot I=0.5\cdot 0.350=0.175\ Watts}$
+
+${T=115°C/W\cdot 0.175W=20.125°C}$
 
 
 ## Simulation
@@ -417,8 +423,9 @@ While this is technically within the operating specifications of the diode, it w
     * Optimum Operating Voltage - 18V
     * Optimum Operating Current - 0.56A
 * [LT3652EMSE#TRPBF - IC BATT CHG MULTI-CHEM 12MSOP](https://www.digikey.ca/en/products/detail/analog-devices-inc/LT3652EMSE-TRPBF/7838158)
-* 2× [B5817WS-TP - DIODE SCHOTTKY 20V 1A SOD323](https://www.digikey.com/en/products/detail/micro-commercial-co/B5817WS-TP/2213553)
-* [MBRS340T3G - DIODE SCHOTTKY 40V 3A SMC](https://www.digikey.com/en/products/detail/onsemi/MBRS340T3G/918009)
+* 1× [B5817WS-TP - DIODE SCHOTTKY 20V 1A SOD323](https://www.digikey.com/en/products/detail/micro-commercial-co/B5817WS-TP/2213553)
+* 1× [SS2P2-M3/84A - Diode 20 V 2A Surface Mount DO-220AA (SMP)](https://www.digikey.ca/en/products/detail/vishay-general-semiconductor-diodes-division/SS2P2-M3-84A/1091548)
+* 1× [MBRS340T3G - DIODE SCHOTTKY 40V 3A SMC](https://www.digikey.com/en/products/detail/onsemi/MBRS340T3G/918009)
 * 2× [150060VS75000 - LED GREEN CLEAR 0603 SMD](https://www.digikey.ca/en/products/detail/w%C3%BCrth-elektronik/150060VS75000/4489906)
 * 2× [ERJ-3EKF1101V - RES SMD 1.1K OHM 1% 1/10W 0603](https://www.digikey.ca/en/products/detail/panasonic-electronic-components/ERJ-3EKF1101V/196037)
 * 2× [CL10A106MA8NRNC - CAP CER 10UF 25V X5R 0603](https://www.digikey.ca/en/products/detail/samsung-electro-mechanics/CL10A106MA8NRNC/3887527)
