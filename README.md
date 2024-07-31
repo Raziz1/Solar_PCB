@@ -203,9 +203,10 @@ ${I_{CVIN\left(RMS\right)}≅I_{CHG\left(MAX\right)}•\left(V_{BAT}/V_{IN}\righ
 ${I_{CVIN\left(RMS\right)}=0.5\cdot \left(\frac{7.4}{12}\right)\cdot \left(\left(\frac{12}{7.4}\right)-1\right)^{\frac{1}{2}}=0.19447\thinspace A}$
 
 * where ${I_{CHG\left(MAX\right)}}$ is the maximum average charge current
-(100mV/${R_{SENSE}}$).
+(100mV/ ${R_{SENSE}}$ ).
 * The simple worst-case of ½ • ${I_{CHG\left(MAX\right)}}$ is commonly
 used for design.
+* Ripple current in capacitors is crucial to consider because it directly impacts the component's performance, reliability, and lifespan by causing internal heating and potential degradation
 
 #### Input Ripple Voltage
 Bulk capacitance is a function of desired input ripple voltage (ΔVIN), and follows the relation:
