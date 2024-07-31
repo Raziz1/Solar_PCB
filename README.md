@@ -467,8 +467,6 @@ For the PCBWay specification selection I chose the following options:
 Finally, I wanted to characterize the response of the circuit using my Analog Discovery 2 - USB oscilloscope. In particular, I aimed to characterize and visualize the difference in responses when the circuit had and didn't have a tuning capacitor.
 
 # Resources
-* [Guide to designing antennas for the NTAG I2C plus
-](https://community.nxp.com/t5/NXP-Designs-Knowledge-Base/Guide-to-designing-antennas-for-the-NTAG-I2C-plus/ta-p/1104729#toc-hId--56223682)
-* [PN7160 antenna design and matching guide](https://www.nxp.com/docs/en/application-note/AN13219.pdf)
-* https://github.com/shawnalexsony/Business_Card_PCB/tree/main
+* [Common Mistakes in DC/DC Converters and How to Fix Them](https://login.ti.com/as/authorization.oauth2?response_type=code&scope=openid%20email%20profile&client_id=DCIT_ALL_WWW-PROD&state=H5b-fq0Q4IgyNCEjBbyU4sybOCs&redirect_uri=https%3A%2F%2Fwww.ti.com%2Foidc%2Fredirect_uri%2F&nonce=n3bXoPABEGb6cJAH1qzcaZyaWSE1Pe7WqVE4aP_YNXY&response_mode=form_post)
+* [Constructing Your Power SupplyLayout Considerations](http://www.submm.caltech.edu/kids_html/DesignLog/DesignLog179/MillerMUSICReadoutDocs/slup230.pdf)
 * [PCBWAY Custom Design Rules Templates](https://www.pcbway.com/pcb_prototype/PCB_Design_Rule_Check.html?currency=1)
