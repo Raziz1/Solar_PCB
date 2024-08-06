@@ -467,6 +467,12 @@ For the PCBWay specification selection I chose the following options:
 Finally, I wanted to characterize the response of the circuit using my Analog Discovery 2 - USB oscilloscope. In particular, I aimed to characterize and visualize the difference in responses when the circuit had and didn't have a tuning capacitor.
 
 # Resources
+* [Designing a Solar and Li-ion Battery Powered Charger / Power Source Part 1](https://www.youtube.com/watch?v=NaxtGdHR_6E)
+* [The Arduino Guide to Low Power Design](https://docs.arduino.cc/learn/electronics/low-power/)
+* [Power saving techniques for microprocessors](https://www.gammon.com.au/power)
+* [narcoleptic](https://github.com/brabl2/narcoleptic)
+* [How to Permanently Store Data on an Arduino's Built-in EEPROM](https://www.digikey.ca/en/maker/blogs/2021/how-to-permanently-store-data-on-an-arduinos-built-in-eeprom)
+* [Switching Regulator PCB Design - Phil's Lab #60](https://www.youtube.com/watch?v=AmfLhT5SntE)
 * [Common Mistakes in DC/DC Converters and How to Fix Them](https://login.ti.com/as/authorization.oauth2?response_type=code&scope=openid%20email%20profile&client_id=DCIT_ALL_WWW-PROD&state=H5b-fq0Q4IgyNCEjBbyU4sybOCs&redirect_uri=https%3A%2F%2Fwww.ti.com%2Foidc%2Fredirect_uri%2F&nonce=n3bXoPABEGb6cJAH1qzcaZyaWSE1Pe7WqVE4aP_YNXY&response_mode=form_post)
 * [Constructing Your Power SupplyLayout Considerations](http://www.submm.caltech.edu/kids_html/DesignLog/DesignLog179/MillerMUSICReadoutDocs/slup230.pdf)
 * [PCBWAY Custom Design Rules Templates](https://www.pcbway.com/pcb_prototype/PCB_Design_Rule_Check.html?currency=1)
