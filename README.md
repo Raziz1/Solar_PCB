@@ -450,7 +450,7 @@ For the PCBWay specification selection I chose the following options:
 * FR4-TG: TG130-140
 * Thickness: 1.6mm
 * Min track/spacing: 5/5mil
-* Solder mask: Green
+* Solder mask: Red
 * Silkscreen: White
 * Edge connector: No
 * Surface finish: HASL with lead

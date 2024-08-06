@@ -3442,7 +3442,7 @@
 				)
 			)
 		)
-		(property "Value" "0.2"
+		(property "Value" "0.25"
 			(at 198.12 77.47 90)
 			(effects
 				(font
