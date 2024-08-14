@@ -8352,7 +8352,7 @@
 		)
 	)
 	(gr_text "+"
-		(at 187 122 0)
+		(at 187 117 0)
 		(layer "F.SilkS")
 		(uuid "ea379894-1c19-4f37-9383-21d95add7b64")
 		(effects

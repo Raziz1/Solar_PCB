@@ -459,12 +459,17 @@ For the PCBWay specification selection I chose the following options:
 * Remove product Num: No
 
 <p align="center">
-    <img title="PCBWay PCB" alt="PCBWay PCB" src="./Images/PCB_Business_Card_PCBWay.jpg" width ="75%">
+    <img title="PCBWay PCB" alt="PCBWay PCB" src="./Images/PCB_Assembly.jpg" width ="75%">
 </p>
 <p align="center"><i>Final Product</i></p>
 
 ## Characterization 🔬
-Finally, I wanted to characterize the response of the circuit using my Analog Discovery 2 - USB oscilloscope. In particular, I aimed to characterize and visualize the difference in responses when the circuit had and didn't have a tuning capacitor.
+Finally, I wanted to characterize the response of the circuit using my Analog Discovery 2 - USB oscilloscope. 
+
+<p align="center">
+    <img title="Output Voltage" alt="Output Voltage" src="./Characterization/PCB_Output.png" width ="75%">
+</p>
+<p align="center"><i>Output Voltage</i></p>
 
 # Resources
 * [Designing a Solar and Li-ion Battery Powered Charger / Power Source Part 1](https://www.youtube.com/watch?v=NaxtGdHR_6E)
