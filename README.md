@@ -475,9 +475,9 @@ ${P=V\cdot I=12V\cdot 0.275A=3.3W}$
 #### Output
 ${P=V\cdot I=7.4\cdot 0.403A=2.9822W}$
 
-$$
+${
 \text{Efficiency} = \frac{P_{\text{out}}}{P_{\text{in}}} \times 100 = \frac{2.9822}{3.3} \times 100 = 0.9036 \times 100 = 90.4\%
-$$
+}$
 
 <p align="center">
     <img title="Input Power" alt="Input Power" src="./Characterization/Input_Supply.jpg" width ="75%">
