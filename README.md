@@ -464,12 +464,51 @@ For the PCBWay specification selection I chose the following options:
 <p align="center"><i>Final Product</i></p>
 
 ## Characterization 🔬
-Finally, I wanted to characterize the response of the circuit using my Analog Discovery 2 - USB oscilloscope. 
+Finally, I wanted to characterize the response of the circuit using my Analog Discovery 2 - USB oscilloscope. For my initial test setup, I connected the power input of the PCB to a power supply, configuring it to deliver 12V while limiting the current to 300mA. Additionally, I connected a pair of lithium-ion batteries to the PCB, which were discharged to approximately 7V.
+
+### Efficiency 📈
+To assess the circuit's output efficiency, I conducted the following calculations based on the input and output power.
+
+#### Input
+${P=V\cdot \:I=12V\cdot 0.275A=3.3W}$
+
+#### Output
+${P=V\cdot \:I=7.4\cdot 0.403A=2.9822W}$
+
+${Efficiency=\frac{P_{out}}{P_{in}}\cdot 100=\frac{2.9822}{3.3}\cdot 100=0.9036\:\cdot \:100=90.4\%}$
+<p align="center">
+    <img title="Input Power" alt="Input Power" src="./Characterization/Input_Supply.jpg" width ="75%">
+</p>
+<p align="center"><i>Input Power</i></p>
+
+<p align="center">
+    <img title="Output Current" alt="Output Current" src="./Characterization/Battery_Current_Draw.png" width ="75%">
+</p>
+<p align="center"><i>Output Current</i></p>
+
+### Thermal Imaging 🔥
+I had the opportunity to conduct thermal imaging on the PCB during its operation by utilizing a FLIR thermal camera. As shown in the image, the primary hotspots were the input diode, battery management IC, and LED indicators. After approximately five minutes of operation at room temperature, the system began to stabilize, with peak temperatures reaching 52.4 degrees Celsius.
+
+<p align="center">
+    <img title="Thermal Image" alt="Thermal Image" src="./Characterization/Thermal_Profile.jpg" width ="75%">
+</p>
+<p align="center"><i>Thermal Image</i></p>
+
+### Output Voltage
+The output voltage is well-centered around 7.4V, and the signal is generally acceptable. However, there are a few important observations to consider. First, there are ringing transients at the beginning of each recovery cycle of the converter. Second, the output ripple voltage is approximately 80mV. While this is within an acceptable range, it is slightly higher than desired. To reduce the output voltage ripple in a buck converter, consider selecting inductors with low parasitic capacitance and appropriate inductance values. Additionally, choose output capacitors with low equivalent series resistance (ESR) and equivalent series inductance (ESL). Increasing the output capacitance can also significantly suppress voltage ripple, thereby enhancing overall performance.
 
 <p align="center">
     <img title="Output Voltage" alt="Output Voltage" src="./Characterization/PCB_Output.png" width ="75%">
 </p>
 <p align="center"><i>Output Voltage</i></p>
+
+### Switching Node
+You can observe the switching node in the image below. As specified in the datasheet, the switching frequency is 1 MHz. Furthermore, as mentioned in the previous section, the same ringing transient is evident at both the rising and falling edges of the signal. Ringing on the switching node of a buck converter is primarily caused by parasitic inductances and capacitances. The interaction between these parasitics and the fast switching speeds of the MOSFETs leads to voltage overshoots and ringing, particularly during the diode's reverse recovery phase. While diode characteristics, such as reverse recovery, can affect the severity of ringing, they are not directly related to the diode's refresh speed.
+
+<p align="center">
+    <img title="Switching Node" alt="Switching Node" src="./Characterization/Switch_Node.png" width ="75%">
+</p>
+<p align="center"><i>Switching Node</i></p>
 
 # Resources
 * [Designing a Solar and Li-ion Battery Powered Charger / Power Source Part 1](https://www.youtube.com/watch?v=NaxtGdHR_6E)
