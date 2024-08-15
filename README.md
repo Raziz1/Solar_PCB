@@ -476,7 +476,7 @@ ${P=V\cdot I=12V\cdot 0.275A=3.3W}$
 ${P=V\cdot I=7.4\cdot 0.403A=2.9822W}$
 
 ${
-\text{Efficiency} = \frac{P_{\text{out}}}{P_{\text{in}}} \times 100 = \frac{2.9822}{3.3} \times 100 = 0.9036 \times 100 = 90.4\%
+\text{Efficiency} = \frac{P_{\text{out}}}{P_{\text{in}}} \cdot 100 = \frac{2.9822}{3.3} \cdot 100 = 0.9036 \cdot 100 = 90.4\\%
 }$
 
 <p align="center">
