@@ -519,13 +519,15 @@ For my final test setup, I connected the solar panel, lithium-ion battery pack, 
 To assess the circuit's output efficiency during operating, I conducted the following calculations based on the input and output power.
 
 #### Input
-${P=V\cdot I=12V\cdot 0.172A=2.064W}$
+${P=V\cdot I=10.21V\cdot 0.172A=1.756W}$
+
+The input voltage from the solar panel was measured at 10.21V instead of the expected 12V, which is attributed to the programmed peak power voltage configured with a voltage divider for the V_In_Reg pin.
 
 #### Output
 ${P=V\cdot I=7.4\cdot 0.2128A=1.575W}$
 
 ${
-\text{Efficiency} = \frac{P_{\text{out}}}{P_{\text{in}}} \cdot 100 = \frac{1.575}{2.064} \cdot 100 = 0.7629 \cdot 100 = 76.3\\%
+\text{Efficiency} = \frac{P_{\text{out}}}{P_{\text{in}}} \cdot 100 = \frac{1.575}{1.756} \cdot 100 = 0.896 \cdot 100 = 89.6\\%
 }$
 
 <p align="center">
