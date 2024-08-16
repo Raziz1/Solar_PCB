@@ -493,7 +493,7 @@ ${
 I had the opportunity to conduct thermal imaging on the PCB during its operation by utilizing a FLIR thermal camera. As shown in the image, the primary hotspots were the input diode, battery management IC, and LED indicators. After approximately five minutes of operation at room temperature, the system began to stabilize, with peak temperatures reaching 52.4 degrees Celsius.
 
 <p align="center">
-    <img title="Thermal Image" alt="Thermal Image" src="./Characterization/Thermal_Profile.jpg" width ="75%">
+    <img title="Thermal Image" alt="Thermal Image" src="./Characterization/Thermal_Profile.jpg" width ="100%">
 </p>
 <p align="center"><i>Thermal Image</i></p>
 
@@ -501,7 +501,7 @@ I had the opportunity to conduct thermal imaging on the PCB during its operation
 The output voltage is well-centered around 7.4V, and the signal is generally acceptable. However, there are a few important observations to consider. First, there are ringing transients at the beginning of each recovery cycle of the converter. Second, the output ripple voltage is approximately 80mV. While this is within an acceptable range, it is slightly higher than desired. To reduce the output voltage ripple in a buck converter, consider selecting inductors with low parasitic capacitance and appropriate inductance values. Additionally, choose output capacitors with low equivalent series resistance (ESR) and equivalent series inductance (ESL). Increasing the output capacitance can also significantly suppress voltage ripple, thereby enhancing overall performance.
 
 <p align="center">
-    <img title="Output Voltage" alt="Output Voltage" src="./Characterization/PCB_Output.png" width ="75%">
+    <img title="Output Voltage" alt="Output Voltage" src="./Characterization/PCB_Output.png" width ="100%">
 </p>
 <p align="center"><i>Output Voltage</i></p>
 
@@ -509,9 +509,31 @@ The output voltage is well-centered around 7.4V, and the signal is generally acc
 You can observe the switching node in the image below. As specified in the datasheet, the switching frequency is 1 MHz. Furthermore, as mentioned in the previous section, the same ringing transient is evident at both the rising and falling edges of the signal. Ringing on the switching node of a buck converter is primarily caused by parasitic inductances and capacitances. The interaction between these parasitics and the fast switching speeds of the MOSFETs leads to voltage overshoots and ringing, particularly during the diode's reverse recovery phase. While diode characteristics, such as reverse recovery, can affect the severity of ringing, they are not directly related to the diode's refresh speed.
 
 <p align="center">
-    <img title="Switching Node" alt="Switching Node" src="./Characterization/Switch_Node.png" width ="75%">
+    <img title="Switching Node" alt="Switching Node" src="./Characterization/Switch_Node.png" width ="100%">
 </p>
 <p align="center"><i>Switching Node</i></p>
+
+### Solar Test ☀️
+For my final test setup, I connected the solar panel, lithium-ion battery pack, and Arduino to the PCB, then placed it in the bright sunlight around noon. On that day, a thin layer of clouds softened the sun's rays. I slightly discharged the battery to approximately 6.8V and set the Arduino to operate in a low-power state using the Narcoleptic library. During this time, the solar panel was able to produce 12V at around 172mA. Once everything was connected, I turned off the battery switch and measured the current draw of the Arduino by checking the voltage across the 0.25-ohm sense resistor. The voltage drop was approximately 9.4mV, indicating that the Arduino was consuming 37.6mA of current. This is significantly higher than what our initial testing of the Narcoleptic library suggested; however, the increased current draw could be attributed to the higher outside temperature. Finally, I turned on the battery switch and allowed the entire system to run. The Arduino remained powered on, executing its software while the battery charged slowly. I measured the current flowing into both the battery and the Arduino by probing the voltage across the 0.25-ohm sense resistor. The voltage drop was 53.2mV, indicating that both were consuming a total of 212.8mA. During full operation, the charge LED was illuminated, indicating that the circuit was functioning correctly and that the batteries were charging.
+
+To assess the circuit's output efficiency during operating, I conducted the following calculations based on the input and output power.
+
+#### Input
+${P=V\cdot I=12V\cdot 0.172A=2.064W}$
+
+#### Output
+${P=V\cdot I=7.4\cdot 0.2128A=1.575W}$
+
+${
+\text{Efficiency} = \frac{P_{\text{out}}}{P_{\text{in}}} \cdot 100 = \frac{1.575}{2.064} \cdot 100 = 0.7629 \cdot 100 = 76.3\\%
+}$
+
+<p align="center">
+    <img title="Solar Test" alt="Solar Test" src="./Characterization/Solar_Test.jpg" width ="100%">
+</p>
+<p align="center"><i>Solar Test</i></p>
+
+
 
 # Resources
 * [Designing a Solar and Li-ion Battery Powered Charger / Power Source Part 1](https://www.youtube.com/watch?v=NaxtGdHR_6E)
