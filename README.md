@@ -535,7 +535,11 @@ ${
 </p>
 <p align="center"><i>Solar Test</i></p>
 
-
+# Future Considerations
+* Characterize battery discharge into Arduino over an entire cell cycle.
+* Characterize battery charging from solar cell during an entire charging cycle.
+* Fix switch node ringing with a snubber circuit.
+* Add reverse polarity protection.
 
 # Resources
 * [Designing a Solar and Li-ion Battery Powered Charger / Power Source Part 1](https://www.youtube.com/watch?v=NaxtGdHR_6E)
