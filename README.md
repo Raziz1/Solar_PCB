@@ -506,7 +506,9 @@ The output voltage is well-centered around 7.4V, and the signal is generally acc
 <p align="center"><i>Output Voltage</i></p>
 
 ### Switching Node
-You can observe the switching node in the image below. As specified in the datasheet, the switching frequency is 1 MHz. Furthermore, as mentioned in the previous section, the same ringing transient is evident at both the rising and falling edges of the signal. Ringing on the switching node of a buck converter is primarily caused by parasitic inductances and capacitances. The interaction between these parasitics and the fast switching speeds of the MOSFETs leads to voltage overshoots and ringing, particularly during the diode's reverse recovery phase. While diode characteristics, such as reverse recovery, can affect the severity of ringing, they are not directly related to the diode's refresh speed.
+You can observe the switching node in the image below. As specified in the datasheet, the switching frequency is 1 MHz. Furthermore, as mentioned in the previous section, the same ringing transient is evident at both the rising and falling edges of the signal. Ringing on the switching node of a buck converter is primarily caused by parasitic inductances and capacitances. The ringing occurs when the high-side switch turns on, and the energy stored in parasitic inductances is released, interacting with parasitic capacitances to create an LC tank circuit. In boost converters, the critical component regarding ringing is often the boost diode, and its characteristics can significantly influence the ringing behavior. You can do the following to reduce switch node ringing: 
+* Adding snubber circuits to dampen the oscillations. 
+* Implementing Schottky or Zener clamps to limit voltage spikes.
 
 <p align="center">
     <img title="Switching Node" alt="Switching Node" src="./Characterization/Switch_Node.png" width ="100%">
