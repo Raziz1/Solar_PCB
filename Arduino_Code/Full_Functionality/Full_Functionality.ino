@@ -25,13 +25,14 @@ struct DHT11DataObject {
 };
 
 #define LED 13
-#define DEBUGMODE 0
+#define DEBUGMODE 1
 
 // Create an instance of the DHT11 class.
 // - For Arduino: Connect the sensor to Digital I/O Pin 2.
 DHT11 dht11(2);
 
 int writeTempAddress = 0;   //Location we want the data to be put.
+int writeAddress = 0;       //Address for general EEPROM writing
 
 // ===============================
 // Setup Function
@@ -61,6 +62,10 @@ void setup() {
   // ATmega48/88/168/328
   DIDR0 = B00111111; //Disable digital input buffers on all ADC0-ADC5 pins
   DIDR1 = (1<<AIN1D)|(1<<AIN0D); //Disable digital input buffer on AIN1/0
+  if (DEBUGMODE)
+  {
+    Narcoleptic.enableSerial();
+  }
 }
 
 // ===============================
@@ -271,6 +276,31 @@ void enableAllPeriph()
   Narcoleptic.enableTouch();
 }
 
+void readAll()
+{
+    Serial.println("Temperature,Humidity,Index");
+
+  for (int address = 0; address < EEPROM.length(); address += sizeof(DHT11DataObject)) {
+    DHT11DataObject data;
+    EEPROM.get(address, data);
+
+    // Check if the data is valid (non-zero)
+    if (data.temp != 0 || data.humd != 0 || data.index != 0) {
+      Serial.print(data.temp);
+      Serial.print(",");
+      Serial.print(data.humd);
+      Serial.print(",");
+      Serial.println(data.index);
+    } else {
+      // Stop reading if we encounter all zeros (assuming it's unused EEPROM)
+      break;
+    }
+  }
+
+  Serial.println("EEPROM data export complete");
+}
+
+
 /**
  * Takes a keyboard input and runs the appropriate function. 
  * This function is primarily used for debugging
@@ -304,6 +334,10 @@ void debugMode()
 
     case 't':
       writeTEMP();
+      break;
+
+    case 'q':
+      readAll();
       break;
 
     default:
