@@ -516,7 +516,7 @@ You can observe the switching node in the image below. As specified in the datas
 <p align="center"><i>Switching Node</i></p>
 
 ### Solar Test ☀️
-For my final test setup, I connected the solar panel, lithium-ion battery pack, and Arduino to the PCB, then placed it in the bright sunlight around noon. On that day, a thin layer of clouds softened the sun's rays. I slightly discharged the battery to approximately 6.8V and set the Arduino to operate in a low-power state using the Narcoleptic library. During this time, the solar panel was able to produce 12V at around 172mA. After connecting everything, I turned off the battery switch and measured the current draw of the Arduino by placing a multimeter in series with it. During its low-power sleep mode, the Arduino was drawing 22.7mA of current. This slightly differs from our initial measurements of the Arduino in low-power mode, which can be attributed to minor errors in the measurement instruments. Finally, I turned on the battery switch and allowed the entire system to run. The Arduino remained powered on, executing its software while the battery charged slowly. I measured the current flowing into both the battery and the Arduino by probing the voltage across the 0.25-ohm sense resistor. The voltage drop was 53.2mV, indicating that both were consuming a total of 212.8mA. During full operation, the charge LED was illuminated, indicating that the circuit was functioning correctly and that the batteries were charging.
+For one of my final test setup, I connected the solar panel, lithium-ion battery pack, and Arduino to the PCB, then placed it in the bright sunlight around noon. On that day, a thin layer of clouds softened the sun's rays. I slightly discharged the battery to approximately 6.8V and set the Arduino to operate in a low-power state using the Narcoleptic library. During this time, the solar panel was able to produce 12V at around 172mA. After connecting everything, I turned off the battery switch and measured the current draw of the Arduino by placing a multimeter in series with it. During its low-power sleep mode, the Arduino was drawing 22.7mA of current. This slightly differs from our initial measurements of the Arduino in low-power mode, which can be attributed to minor errors in the measurement instruments. Finally, I turned on the battery switch and allowed the entire system to run. The Arduino remained powered on, executing its software while the battery charged slowly. I measured the current flowing into both the battery and the Arduino by probing the voltage across the 0.25-ohm sense resistor. The voltage drop was 53.2mV, indicating that both were consuming a total of 212.8mA. During full operation, the charge LED was illuminated, indicating that the circuit was functioning correctly and that the batteries were charging.
 
 To assess the circuit's output efficiency during operating, I conducted the following calculations based on the input and output power.
 
@@ -536,6 +536,19 @@ ${
     <img title="Solar Test" alt="Solar Test" src="./Characterization/Solar_Test.jpg" width ="100%">
 </p>
 <p align="center"><i>Solar Test</i></p>
+
+### Extended Solar Test ☀️
+For one of my final test setups, I connected the solar panel, lithium-ion battery pack, and Arduino to the PCB. Then, I connected my Analog Discovery 2 USB oscilloscope to the battery terminals and solar panel terminals. Finally, I taped the solar panel to my room window and began my scope capture at 3 AM. I ran the scope capture from 3 AM to 11:30 PM to characterize the circuit's response during an entire day of sun exposure. On this day, there were clear skies and approximately 12 hours of bright sunshine. The battery was nearly full at the beginning of the test, so throughout the day, minimal charging occurred.
+
+<p align="center">
+    <img title="Extended Solar Test" alt="Extended Solar Test" src="./Characterization/Solar_GraphModified.png" width ="100%">
+</p>
+<p align="center"><i>Extended Solar Test</i></p>
+
+<p align="center">
+    <img title="Extended Solar Test Battery Graph" alt="Extended Solar Test Battery Graph" src="./Characterization/Battery_Charge.png" width ="100%">
+</p>
+<p align="center"><i>Extended Solar Test</i></p>
 
 # Future Considerations
 * Characterize battery discharge into Arduino over an entire cell cycle.
